@@ -6,4 +6,5 @@ var app = app || {};
 
   const movieView = {};
 
+  module.movieView = movieView;
 })(app)
