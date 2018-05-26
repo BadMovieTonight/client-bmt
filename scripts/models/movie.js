@@ -5,9 +5,10 @@ var app = app || {};
 (function(module) {
 
   function Movie(movieObject){
-    Object.keys(movieObject).forEach(key => this[key] = bookObject[key]);
+    Object.keys(movieObject).forEach(key => this[key] = movieObject[key]);
   }
 
   Movie.all = [];
 
-})(app)
+  module.Movie = Movie;
+})(app);
