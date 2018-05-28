@@ -52,6 +52,13 @@
         </form>
         <ul id="movie-list"></ul>
       </section>
+      <section class="container" id="login">
+        <form id="login-form">
+          <input type="text" id="username" placeholder="Username" required>
+          <input type="password" id="password" placeholder="Password" required>
+          <button type="submit">Log In</button>
+        </form>
+      </section>
     </main>
     <footer>
 
@@ -59,9 +66,12 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/4.0.11/handlebars.min.js"></script>
     <script src="https://cdn.rawgit.com/visionmedia/page.js/master/page.js"></script>
+    <script src="scripts/app.js"></script>
+    <script src="scripts/models/user.js"></script>
+    <script src="scripts/views/userView.js"></script>
     <script src="scripts/models/movie.js"></script>
     <script src="scripts/views/movieView.js"></script>
     <script src="scripts/controllers/routes.js"></script>
-    <script src="scripts/app.js"></script>
+
   </body>
 </html>
