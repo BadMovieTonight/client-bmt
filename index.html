@@ -9,6 +9,17 @@
     <link rel="stylesheet" type="text/css" href="styles/layout.css">
     <link rel="stylesheet" type="text/css" href="styles/modules.css">
     <link rel="icon" type="image/x-icon" href="https://avatars2.githubusercontent.com/u/18607604?v=3&s=200">
+
+    <script id="movie-list-template" type="text/x-handlebars-template">
+      <div class="movie-list-item" id="{{id}}">
+        <img src="https://image.tmdb.org/t/p/w200_and_h300_bestv2{{poster_path}}">
+        <h3>{{title}}</h3>
+        <p>{{vote_average}}</p>
+        <p>{{release_date}}</p>
+        <p>{{overview}}</p>
+      </div>
+    </script>
+
   </head>
   <body>
     <header class="clearfix">
@@ -36,11 +47,35 @@
     </section>
     </header>
     <main>
-      <section class="default-movies container"></section>
-      <section class="sign-in container"></section>
-      <section class="new-user container"></section>
-      <section class=" container"></section>
-      <section class=" container"></section>
+      <section id="movie-list" class="container"></section>
+
+      <section id="new-user" class="container"></section>
+
+      <section id="movie-advanced-search" class="container">
+        <h2>Find Movies</h2>
+        <form id="advanced-search-form">
+          <input type="number" id="max-rating" placeholder="Max Rating">
+          <input type="number" id="min-ratings" placeholder="Min Ratings">
+          <input type="date" id="date-before" placeholder="Date Before">
+          <input type="date" id="date-after" placeholder="Date After">
+          <select name="Sort By" id="sort-by">
+            <option value="date-asc">Oldest</option>
+            <option value="date-desc">Newest</option>
+            <option value="name">Name</option>
+            <option value="rating">Lowest Rated</option>
+            <option value="popularity">Most Popular</option>
+          </select>
+        </form>
+      </section>
+
+      <section class="container" id="login">
+        <form id="login-form">
+          <input type="text" id="username" placeholder="Username" required>
+          <input type="password" id="password" placeholder="Password" required>
+          <button type="submit">Log In</button>
+        </form>
+      </section>
+
     </main>
     <footer>
 
@@ -48,9 +83,12 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/4.0.11/handlebars.min.js"></script>
     <script src="https://cdn.rawgit.com/visionmedia/page.js/master/page.js"></script>
+    <script src="scripts/app.js"></script>
+    <script src="scripts/models/user.js"></script>
+    <script src="scripts/views/userView.js"></script>
     <script src="scripts/models/movie.js"></script>
     <script src="scripts/views/movieView.js"></script>
     <script src="scripts/app.js"></script>
     <script src="scripts/controllers/routes.js"></script>
-  </body>
+</body>
 </html>
