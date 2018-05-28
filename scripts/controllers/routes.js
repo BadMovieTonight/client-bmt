@@ -6,6 +6,8 @@ page('/', () => {
   app.Movie.fetchAll(app.movieView.initIndexPage);
 });
 
+page('/client-bmt', () => page('/'));
+
 page('/menu', ctx => {
   app.toggleMenu();
 });
