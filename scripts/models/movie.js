@@ -17,9 +17,12 @@ var app = app || {};
 
   Movie.loadAll = movieData => {Movie.all = movieData.map(movieObj => new Movie(movieObj));};
 
-  Movie.fetchAll = () => {
-    $.get(`${app.ENVIRONMENT.server_url}/homepage`)
-      .then(response => console.log(response))
+  Movie.fetchAll = (callback) => {
+    $.get(`${app.ENVIRONMENT.apiUrl}/homepage`)
+      .then(response => {
+        Movie.loadAll(response.results);
+        callback();
+      })
       .catch(err => console.log('that didn\'t work'));
   };
 

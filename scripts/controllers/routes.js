@@ -1,7 +1,10 @@
 'use strict';
 
 
-page('/', () => app.showOnly('#movie-search'));
+page('/', () => {
+  app.showOnly('#movie-search');
+  app.Movie.fetchAll(app.movieView.initIndexPage);
+});
 
 page('/menu', ctx => {
   app.toggleMenu();

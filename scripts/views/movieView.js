@@ -11,7 +11,7 @@ var app = app || {};
     $movieList.empty();
     app.showOnly('#movie-list');
 
-    app.Movie.all.forEach(elem => {$movieList.append(elem.toHtml);});
+    app.Movie.all.forEach(elem => {$movieList.append(elem.toHtml());});
   };
 
   module.movieView = movieView;
