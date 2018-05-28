@@ -7,13 +7,51 @@
     <link rel="stylesheet" type="text/css" href="styles/base.css">
     <link rel="stylesheet" type="text/css" href="styles/layout.css">
     <link rel="stylesheet" type="text/css" href="styles/modules.css">
+
+    <script id="movie-list-item" type="text/x-handlebars-template">
+      <div class="movie-list-item" id="{{id}}">
+        <img src="https://image.tmdb.org/t/p/w200_and_h300_bestv2{{poster_path}}">
+        <h3>{{title}}</h3>
+        <p>{{vote_average}}</p>
+        <p>{{release_date}}</p>
+        <p>{{overview}}</p>
+      </div>
+    </script>
   </head>
   <body>
     <header>
-
+      <div class="centered clearfix">
+        <div class="left" id="logo-section">
+          <img src="http://via.placeholder.com/150x150">
+          <h1>Bad Movie Tonight</h1>
+        </div>
+        <nav>
+          <div class="icon-menu"></div>
+          <ul>
+            <li><a href="/">Home</a></li>
+            <li><a href="/login">Login</a></li>
+          </ul>
+        </nav>
+      </div>
     </header>
     <main>
-
+      <section class="container" id="movie-search">
+        <h2>Find Movies</h2>
+        <form id="search-form">
+          <input type="number" id="max-rating" placeholder="Max Rating">
+          <input type="number" id="min-ratings" placeholder="Min Ratings">
+          <input type="date" id="date-before" placeholder="Date Before">
+          <input type="date" id="date-after" placeholder="Date After">
+          <select name="Sort By" id="sort-by">
+            <option value="date-asc">Oldest</option>
+            <option value="date-desc">Newest</option>
+            <option value="name">Name</option>
+            <option value="rating">Lowest Rated</option>
+            <option value="popularity">Most Popular</option>
+          </select>
+        </form>
+        <ul id="movie-list"></ul>
+      </section>
     </main>
     <footer>
 
