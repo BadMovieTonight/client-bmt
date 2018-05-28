@@ -3,10 +3,12 @@
 <html>
   <head>
     <title>Bad Movie Tonight: The best of the worst of Hollywood</title>
-    <link rel="stylesheet" type="text/css" href="vendor/styles/normalize.css">
+    <link rel="stylesheet" type="text/css" href="styles/vendor/styles/normalize.css">
+    <link rel="stylesheet" type="text/css" href="styles/vendor/styles/icons.css">
     <link rel="stylesheet" type="text/css" href="styles/base.css">
     <link rel="stylesheet" type="text/css" href="styles/layout.css">
     <link rel="stylesheet" type="text/css" href="styles/modules.css">
+    <link rel="icon" type="image/x-icon" href="https://avatars2.githubusercontent.com/u/18607604?v=3&s=200">
 
     <script id="movie-list-template" type="text/x-handlebars-template">
       <div class="movie-list-item" id="{{id}}">
@@ -17,27 +19,41 @@
         <p>{{overview}}</p>
       </div>
     </script>
+
   </head>
   <body>
-    <header>
-      <div class="centered clearfix">
-        <div class="left" id="logo-section">
-          <img src="http://via.placeholder.com/150x150">
-          <h1>Bad Movie Tonight</h1>
+    <header class="clearfix">
+      <section class="heading-group-h1">
+        <h1>
+          Bad Movie Tonight
+        </h1>
+        <h2>A site dedicated to the worst of cinema</h2>
+        <div>
+          <a href="/menu" class="icon-menu"></a>
+          <form id="search-form">
+            <input type="text" id="search" placeholder="Search"></input>
+            <a href="/search">
+            <button type="search" class="icon-search"></button></a>
+          </form>
         </div>
-        <nav>
-          <div class="icon-menu"></div>
-          <ul>
-            <li><a href="/">Home</a></li>
-            <li><a href="/login">Login</a></li>
-          </ul>
-        </nav>
-      </div>
+      <nav>        
+        <ul>
+          <li class="tab" data-content="movies"><a href="/" class="icon-home"> Home</a></li>
+          <li class="tab" data-content="login"><a href="/login" class="icon-key"> Sign in</a></li>
+          <li class="tab" data-content="preferences"><a href="/preferences" class="icon-cog"> Preferences</a></li>
+          <li class="tab" data-content="about"><a href="/about" class="icon-address-book"> About</a></li>
+        </ul>
+      </nav>
+    </section>
     </header>
     <main>
-      <section class="container" id="movie-search">
+      <section id="movie-list" class="container"></section>
+
+      <section id="new-user" class="container"></section>
+
+      <section id="movie-advanced-search" class="container">
         <h2>Find Movies</h2>
-        <form id="search-form">
+        <form id="advanced-search-form">
           <input type="number" id="max-rating" placeholder="Max Rating">
           <input type="number" id="min-ratings" placeholder="Min Ratings">
           <input type="date" id="date-before" placeholder="Date Before">
@@ -50,8 +66,16 @@
             <option value="popularity">Most Popular</option>
           </select>
         </form>
-        <ul id="movie-list"></ul>
       </section>
+
+      <section class="container" id="login">
+        <form id="login-form">
+          <input type="text" id="username" placeholder="Username" required>
+          <input type="password" id="password" placeholder="Password" required>
+          <button type="submit">Log In</button>
+        </form>
+      </section>
+
     </main>
     <footer>
 
@@ -59,9 +83,12 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/4.0.11/handlebars.min.js"></script>
     <script src="https://cdn.rawgit.com/visionmedia/page.js/master/page.js"></script>
+    <script src="scripts/app.js"></script>
+    <script src="scripts/models/user.js"></script>
+    <script src="scripts/views/userView.js"></script>
     <script src="scripts/models/movie.js"></script>
     <script src="scripts/views/movieView.js"></script>
-    <script src="scripts/controllers/routes.js"></script>
     <script src="scripts/app.js"></script>
+    <script src="scripts/controllers/routes.js"></script>
   </body>
 </html>
