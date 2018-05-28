@@ -3,8 +3,9 @@ body > header {
 }
 
 .heading-group-h1 {
-  float: left;
-  clear: right;
+  display: block;
+  /* float: left;
+  clear: right; */
   background-color: rgb(243, 216, 136);
   padding: 1em 1em 1em 1em;
 }
@@ -47,11 +48,14 @@ li {
   padding-left: 0.2em;
 }
 
-li a, nav a {
+li a, .heading-group-h1 a {
   text-decoration: none;
   color: grey;
   font-family: 'Times New Roman', Times, serif;
+}
 
+nav a {
+  float: left;
 }
 
 li:first-child{
@@ -83,13 +87,6 @@ main p{
   .heading-group-h1 {
     width:100%;
     float:none;
-  }
-  .icon-menu{
-    display: none;
-  }
-
-  nav ul[style], nav ul{
-    display: block !important;
   }
 
   li{

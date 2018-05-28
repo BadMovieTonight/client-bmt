@@ -1,4 +1,9 @@
 body {
-  margin: 0em;
+  margin: auto;
   padding: 0em;
 }
+
+@media only and screen (min-width: 320px){
+
+}
+

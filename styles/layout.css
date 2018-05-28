@@ -5,8 +5,12 @@ address {
 }
 
 .icon-menu {
-  float:right;
+  float: left;
   font-size: 2.5em;
+}
+
+.heading-group-h1 form {
+  display: inline-block;
 }
 
 
