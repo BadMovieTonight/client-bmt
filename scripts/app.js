@@ -11,7 +11,7 @@ var app = app || {};
   };
 
   module.toggleMenu = () => {
-    $('nav ul').slideToggle();
+    $('nav ul').toggle();
   }
 
 })(app)
