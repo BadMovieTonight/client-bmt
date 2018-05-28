@@ -1,17 +1,51 @@
-address {
+/* address {
   display: inline-block;
   font-style: italic;
   font-weight: bold;
+} */
+h1 {
+  font-size: 1.6em;
 }
-
+h2 {
+  font-size: 1.1em;
+}
 .icon-menu {
   float: left;
   font-size: 2.5em;
+  line-height: .8em;
+  margin-top: 0em;
+  padding: 0;
+}
+
+.heading-group-h1 div {
+  /* float: left; */
+  /* vertical-align: center; */
 }
 
 .heading-group-h1 form {
-  display: inline-block;
+  /* display: inline-block; */
+  /* line-height: 1.7em; */
+  /* float:left; */
+  /* width: 100%; */
+  /* margin: 0;
+  padding: 0; */
 }
+.heading-group-h1 input {
+  /* line-height: 1.6em; */
+  font-size: 1.3em;
+  width: 75%;
+  margin-left: 1em;
+  margin-right: 0em;
+  padding: 0;
+}
+.heading-group-h1 form button {
+  font-size: 1.4em;
+  margin-top: .0em;
+  margin-left: 0em;
+  margin-bottom: 0em;
+  padding: .1em;
+}
+
 
 
 img {
@@ -23,12 +57,51 @@ footer{
   text-align: center;
 }
 
-@media only screen and (min-width:640px){
+@media only screen and (min-width: 641px){
+  body {
+    width: 640px;
+  }
   .pull-left {
     float: left;
   }
   
   .pull-right {
     float: right;
-  }  
+  } 
+  h1 {
+    font-size: 1.8em;
+  }
+  h2 {
+    font-size: 1.2em;
+  } 
+}
+
+@media only screen and (min-width: 850px){
+  body {
+    width: 750px;
+  }
+  .heading-group-h1 input {
+    width: 60%;
+  }
+  h1 {
+    font-size: 2em;
+  }
+  h2 {
+    font-size: 1.4em;
+  }
+}
+
+@media only screen and (min-width: 961px){
+  body {
+    width: 960px;
+  }
+  .heading-group-h1 input {
+    width: 50%;
+  }
+  h1 {
+    font-size: 2.2em;
+  }
+  h2 {
+    font-size: 1.6em;
+  }
 }

@@ -1,9 +1,24 @@
 body {
   margin: auto;
   padding: 0em;
+  width: 440px;
 }
 
-@media only and screen (min-width: 320px){
+@media only screen and (min-width: 641px){
+  body {
+    width: 640px;
+  }
+}
 
+@media only screen and (min-width: 850px){
+  body {
+    width: 750px;
+  }
+}
+
+@media only screen and (min-width: 961px){
+  body {
+    width: 960px;
+  }
 }
 

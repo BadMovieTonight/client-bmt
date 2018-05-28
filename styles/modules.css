@@ -1,13 +1,11 @@
 body > header {
-  background-color: rgb(243, 216, 136);
+  background-color: black;
+  color: white;
 }
 
 .heading-group-h1 {
   display: block;
-  /* float: left;
-  clear: right; */
-  background-color: rgb(243, 216, 136);
-  padding: 1em 1em 1em 1em;
+  padding: .2em 1em 1em 1em;
 }
 
 header > div {
