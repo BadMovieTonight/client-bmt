@@ -10,4 +10,8 @@ var app = app || {};
     $(section).show();
   };
 
+  module.toggleMenu = () => {
+    $('nav ul').slideToggle();
+  }
+
 })(app)
