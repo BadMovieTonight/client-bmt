@@ -6,7 +6,7 @@ var app = app || {};
 
   const userView = {};
 
-  //Function that toggles elements on/off based on if a user is logged in
+  //Function that toggles elements on/off based on if a user is logged in.
 
   module.userView = userView;
 })(app);
