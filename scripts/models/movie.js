@@ -26,7 +26,7 @@ var app = app || {};
         Movie.loadAll(response.results);
         callback();
       })
-      .catch(err => console.log('that didn\'t work'));
+      .catch(err => console.log(err));
   };
 
   module.Movie = Movie;

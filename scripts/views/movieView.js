@@ -29,7 +29,7 @@ var app = app || {};
         movieView.initIndexPage();
         // callback();
       })
-      .catch(err => console.log('that didn\'t work'));
+      .catch(err => console.log(err));
   };
 
   module.movieView = movieView;
