@@ -18,7 +18,7 @@ var app = app || {};
     // console.log(ctx);
     console.log('search string',$('#search').val());
     $.get(`${app.ENVIRONMENT.apiUrl}/bmt/search`,
-    {searchFor: $('#search').val()})
+      {searchFor: $('#search').val()})
       .then(response => {
         console.log('search returned',response.results);
         app.Movie.all = response.results
@@ -29,7 +29,7 @@ var app = app || {};
         // callback();
       })
       .catch(err => console.log('that didn\'t work'));
-  }
+  };
 
   module.movieView = movieView;
 })(app);

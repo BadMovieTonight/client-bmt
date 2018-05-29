@@ -24,10 +24,11 @@
     </script>
 
     <script id="movie-list-person-template" type="text/x-handlebars-template">
-      <div class="movie-list-item" id="{{id}}">
-        <img src="https://image.tmdb.org/t/p/w200_and_h300_bestv2{{profile_path}}">
-        <h3>{{name}}</h3>
-        <p>{{popularity}}</p>
+      <div class="movie-list-item clearfix" id="{{id}}">
+        <img src="https://image.tmdb.org/t/p/w200_and_h300_bestv2{{profile_path}}" class="person-img">
+        <span class="movie-info">
+          <h3>{{name}}</h3>
+        </span>
       </div>
     </script>
 
