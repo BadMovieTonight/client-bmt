@@ -53,8 +53,14 @@
       <nav>        
         <ul>
           <li class="tab" data-content="movies"><a href="/" class="icon-home"> Home</a></li>
-          <li class="tab" data-content="login-logout" id="user1"><a href="/login" class="icon-key"> Sign In</a></li>
-          <li class="tab" data-content="signup-profile" id="user2"><a href="/signup" class="icon-pencil2"> New User</a></li>
+          <li class="tab" data-content="login-logout">
+            <a href="/login" class="icon-key"> Sign In</a>
+            <a href="/logout" class="icon-cross"> Sign Out</a>
+          </li>
+          <li class="tab" data-content="signup-profile">
+            <a href="/signup" class="icon-pencil2"> New User</a>
+            <a href="/profile" class="icon-user-tie"> My Profile</a>
+          </li>
           <li class="tab" data-content="about"><a href="/about" class="icon-address-book"> About</a></li>
         </ul>
       </nav>
@@ -110,5 +116,9 @@
     <script src="scripts/views/movieView.js"></script>
     <script src="scripts/app.js"></script>
     <script src="scripts/controllers/routes.js"></script>
+    <script>
+      $('a[href="/logout"]').hide();
+      $('a[href="/profile"]').hide();
+    </script>
   </body>
 </html>

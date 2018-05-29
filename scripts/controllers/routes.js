@@ -16,9 +16,9 @@ page('/login', () => app.showOnly('#login'));
 
 //logout route doesnt work for some reason
 page('/logout', () => {
-  app.showOnly('#movie-search');
   app.User.current = null;
   app.userView.toggleUserView();
+  page('/');
 });
 
 page('/search', (ctx) => app.movieView.handleGeneralSearch(ctx));
