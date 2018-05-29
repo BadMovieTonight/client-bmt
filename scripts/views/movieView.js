@@ -25,6 +25,7 @@ var app = app || {};
           .filter(o => o.media_type === o.media_type) //'movie')  // an array of movies
           .map(o => new app.Movie(o));
         console.log(app.Movie.all);
+        console.log('Page',response.page,'of',response.total_pages);
         movieView.initIndexPage();
         // callback();
       })
