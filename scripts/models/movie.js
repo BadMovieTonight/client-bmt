@@ -11,13 +11,11 @@ var app = app || {};
   Movie.all = [];
 
   Movie.prototype.toHtml = function() {
-    let template;
     if (!this.media_type || this.media_type === 'movie') {
-      template = $('#movie-list-template').text();
+      return Handlebars.compile($('#movie-list-template').text())(this);
     } else if (this.media_type === 'person') {
-      template = $('#movie-list-person-template').text();
+      return Handlebars.compile($('#movie-list-person-template').text())(this);
     }
-    return Handlebars.compile(template)(this);
   };
 
   Movie.loadAll = movieData => {Movie.all = movieData.map(movieObj => new Movie(movieObj));};
