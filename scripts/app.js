@@ -6,7 +6,7 @@ var app = app || {};
   let productionApiUrl = 'https://badmovietonight.herokuapp.com/';
   let developmentApiUrl = 'http://localhost:3000';
 
-  module.isProduction = window.location.protocol === 'https';
+  module.isProduction = window.location.protocol === 'https:';
 
   module.ENVIRONMENT = {apiUrl: module.isProduction ? productionApiUrl : developmentApiUrl};
 
