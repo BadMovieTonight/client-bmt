@@ -4,7 +4,6 @@ body > header {
 }
 
 .heading-group-h1 {
-  display: block;
   padding: .2em 1em 1em 1em;
 }
 
@@ -87,7 +86,18 @@ input#search {
   color: black;
 }
 
-@media only screen and (min-width:640px){
+#search {
+  height: 1.25em;
+}
+
+.overview { 
+  font-family: Georgia, 'Times New Roman', Times, serif;
+  text-align: center;
+  overflow-y: auto;
+  height: 125px;
+}
+
+@media only screen and (min-width:680px){
   .heading-group-h1 {
     width:100%;
     float:none;

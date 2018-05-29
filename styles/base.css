@@ -1,24 +1,18 @@
 body {
+  /* margin: auto; */
+}
+
+main, .heading-group-h1 {
   margin: auto;
-  padding: 0em;
-  width: 440px;
+  width: 90vw;
+  min-width: 480px;
+  max-width: 960px;
 }
 
-@media only screen and (min-width: 641px){
-  body {
-    width: 640px;
-  }
-}
+@media only screen and (min-width: 681px){
 
-@media only screen and (min-width: 850px){
-  body {
-    width: 750px;
-  }
-}
-
-@media only screen and (min-width: 961px){
-  body {
-    width: 960px;
+  .icon-menu::before {
+    display: none;
   }
 }
 
