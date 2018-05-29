@@ -2,6 +2,9 @@
 
 
 page('/', () => {
+  delete app.Movie.page;
+  delete app.Movie.totalPages;
+  app.toggleMenu();
   app.showOnly('#movie-search');
   app.Movie.fetchAll(app.movieView.initIndexPage);
 });
@@ -14,6 +17,6 @@ page('/menu', ctx => {
 
 page('/login', () => app.showOnly('#login'));
 
-page('/search', (ctx) => app.movieView.handleGeneralSearch(ctx));
+page('/search/:page', (ctx) => app.movieView.handleGeneralSearch(ctx));
 
 page();

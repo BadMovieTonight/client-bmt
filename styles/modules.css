@@ -32,7 +32,7 @@ nav {
 }
 
 ul {
-  display: none;
+  display: block;
   list-style-type: none;
   margin-left: 0em;
   padding-left: 0em;
