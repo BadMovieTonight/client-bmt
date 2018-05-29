@@ -14,5 +14,22 @@ var app = app || {};
     app.Movie.all.forEach(elem => {$movieList.append(elem.toHtml());});
   };
 
+  movieView.handleGeneralSearch = function(ctx) {
+    // console.log(ctx);
+    console.log('search string',$('#search').val());
+    $.get(`${app.ENVIRONMENT.apiUrl}/bmt/search`,
+    {searchFor: $('#search').val()})
+      .then(response => {
+        console.log('search returned',response.results);
+        app.Movie.all = response.results
+          .filter(o => o.media_type === o.media_type) //'movie')  // an array of movies
+          .map(o => new app.Movie(o));
+        console.log(app.Movie.all);
+        movieView.initIndexPage();
+        // callback();
+      })
+      .catch(err => console.log('that didn\'t work'));
+  }
+
   module.movieView = movieView;
 })(app);

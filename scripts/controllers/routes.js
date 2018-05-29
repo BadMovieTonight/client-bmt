@@ -14,4 +14,6 @@ page('/menu', ctx => {
 
 page('/login', () => app.showOnly('#login'));
 
+page('/search', (ctx) => app.movieView.handleGeneralSearch(ctx));
+
 page();

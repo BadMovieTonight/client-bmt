@@ -11,8 +11,13 @@ var app = app || {};
   Movie.all = [];
 
   Movie.prototype.toHtml = function() {
-    let template = Handlebars.compile($('#movie-list-template').text());
-    return template(this);
+    let template;
+    if (!this.media_type || this.media_type === 'movie') {
+      template = $('#movie-list-template').text();
+    } else if (this.media_type === 'person') {
+      template = $('#movie-list-person-template').text();
+    }
+    return Handlebars.compile(template)(this);
   };
 
   Movie.loadAll = movieData => {Movie.all = movieData.map(movieObj => new Movie(movieObj));};

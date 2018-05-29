@@ -82,6 +82,10 @@ main p{
   padding-top: 0;
 }
 
+input#search {
+  color: black;
+}
+
 #search {
   height: 1.25em;
 }
