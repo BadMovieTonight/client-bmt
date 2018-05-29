@@ -9,6 +9,7 @@
     <link rel="stylesheet" type="text/css" href="styles/base.css">
     <link rel="stylesheet" type="text/css" href="styles/layout.css">
     <link rel="stylesheet" type="text/css" href="styles/modules.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Fontdiner+Swanky">
     <link rel="icon" type="image/x-icon" href="https://avatars2.githubusercontent.com/u/18607604?v=3&s=200">
 
     <script id="movie-list-template" type="text/x-handlebars-template">
@@ -38,11 +39,9 @@
   <body>
     <header>
       <section class="heading-group-h1 clearfix">
-        <h1>
-          Bad Movie Tonight
-        </h1>
+        <h1>Bad Movie Tonight</h1>
         <h2>A site dedicated to the worst of cinema</h2>
-        <div>
+        <div class="clearfix">
           <a href="/menu" class="icon-menu"></a>
           <form id="search-form">
             <input type="search" id="search" placeholder="Search"></input>
@@ -50,15 +49,15 @@
             <button type="submit" class="icon-search"></button></a>
           </form>
         </div>
-      <nav>        
-        <ul>
-          <li class="tab" data-content="movies"><a href="/" class="icon-home"> Home</a></li>
-          <li class="tab" data-content="login"><a href="/login" class="icon-key"> Sign in</a></li>
-          <li class="tab" data-content="preferences"><a href="/preferences" class="icon-cog"> Preferences</a></li>
-          <li class="tab" data-content="about"><a href="/about" class="icon-address-book"> About</a></li>
-        </ul>
-      </nav>
-    </section>
+        <nav>        
+          <ul>
+            <li class="tab" data-content="movies"><a href="/" class="icon-home"> Home</a></li>
+            <li class="tab" data-content="login"><a href="/login" class="icon-key"> Sign in</a></li>
+            <li class="tab" data-content="preferences"><a href="/preferences" class="icon-cog"> Preferences</a></li>
+            <li class="tab" data-content="about"><a href="/about" class="icon-address-book"> About</a></li>
+          </ul>
+        </nav>
+      </section>
     </header>
     <main>
       <section id="movie-list" class="container"></section>

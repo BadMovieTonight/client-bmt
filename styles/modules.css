@@ -3,10 +3,6 @@ body > header {
   color: white;
 }
 
-.heading-group-h1 {
-  padding: .2em 1em 1em 1em;
-}
-
 header > div {
   color: grey;
 }
@@ -20,15 +16,6 @@ header > div a {
 
 nav {
   padding-bottom: 0.7em;
-}
-
-.clearfix:after {
-  visibility: hidden;
-  display: block;
-  font-size: 0;
-  content: " ";
-  clear: both;
-  height: 0;
 }
 
 ul {
@@ -57,7 +44,6 @@ nav a {
   float: left;
 }
 
-
 main {
   padding: 0 1em;
 }
@@ -66,12 +52,21 @@ main p{
   line-height: 1.5em;
 }
 
-input#search {
-  color: black;
+.clearfix:after {
+  visibility: hidden;
+  display: block;
+  font-size: 0;
+  content: " ";
+  clear: both;
+  height: 0;
 }
 
-#search {
-  height: 1.25em;
+.heading-group-h1 {
+  padding: .2em 1em 1em 1em;
+}
+
+.heading-group-h1 h1, h2{
+  font-family: 'Fontdiner Swanky', cursive;
 }
 
 .overview { 
@@ -83,6 +78,14 @@ input#search {
 
 .person-img {
   float: left;
+}
+
+input#search {
+  color: black;
+}
+
+#search {
+  height: 1.25em;
 }
 
 @media only screen and (min-width:680px){
