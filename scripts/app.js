@@ -3,7 +3,7 @@
 var app = app || {};
 
 (function(module) {
-  let productionApiUrl = 'https://badmovietonight.herokuapp.com/';
+  let productionApiUrl = 'https://badmovietonight.herokuapp.com';
   let developmentApiUrl = 'http://localhost:3000';
 
   module.isProduction = window.location.protocol === 'https:';
