@@ -58,54 +58,21 @@ footer{
 }
 
 .movie-list-item {
-  outline: 1px solid darkblue;
+  margin-top: 1em;  /* outline: 1px solid darkblue; */
+  background-color: #eeeeee;
+  padding: 0.5em;
 }
 
-@media only screen and (min-width: 641px){
-  body {
-    width: 640px;
-  }
-  .pull-left {
-    float: left;
-  }
-  
-  .pull-right {
-    float: right;
-  } 
-  h1 {
-    font-size: 1.8em;
-  }
-  h2 {
-    font-size: 1.2em;
-  } 
+.movie-img {
+  float: left;
 }
 
-@media only screen and (min-width: 850px){
-  body {
-    width: 750px;
-  }
-  .heading-group-h1 input {
-    width: 60%;
-  }
-  h1 {
-    font-size: 2em;
-  }
-  h2 {
-    font-size: 1.4em;
-  }
+.movie-info {
+  margin-top: 1em;
+  text-align: center;
 }
 
-@media only screen and (min-width: 961px){
-  body {
-    width: 960px;
-  }
-  .heading-group-h1 input {
-    width: 50%;
-  }
-  h1 {
-    font-size: 2.2em;
-  }
-  h2 {
-    font-size: 1.6em;
-  }
+h3 {
+  font-size: 1.5em;
+  text-decoration: underline;
 }

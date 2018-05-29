@@ -12,18 +12,20 @@
 
     <script id="movie-list-template" type="text/x-handlebars-template">
       <div class="movie-list-item" id="{{id}}">
-        <img src="https://image.tmdb.org/t/p/w200_and_h300_bestv2{{poster_path}}">
-        <h3>{{title}}</h3>
-        <p>{{vote_average}}</p>
-        <p>{{release_date}}</p>
-        <p>{{overview}}</p>
+        <img src="https://image.tmdb.org/t/p/w200_and_h300_bestv2{{poster_path}}" class="movie-img">
+        <span class="movie-info">
+          <h3>{{title}}</h3>
+          <p><strong>Average Rating:</strong> {{vote_average}}/10</p>
+          <p><strong>Released Date:</strong> {{release_date}}</p>
+          <p class="overview">{{overview}}</p>
+        </span>
       </div>
     </script>
 
   </head>
   <body>
-    <header class="clearfix">
-      <section class="heading-group-h1">
+    <header>
+      <section class="heading-group-h1 clearfix">
         <h1>
           Bad Movie Tonight
         </h1>
