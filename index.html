@@ -19,6 +19,7 @@
           <p><strong>Average Rating:</strong> {{vote_average}}/10</p>
           <p><strong>Released Date:</strong> {{release_date}}</p>
           <p class="overview">{{overview}}</p>
+          <p><a href="/credits/{{id}}">Cast and Credits</a></p>
         </span>
       </div>
     </script>
@@ -31,6 +32,14 @@
         <p>Birthplace: {{place_of_birth}}</p>
         <p>Popularity ranking: {{popularity}}</p>
         <p>{{biography}}</p>
+      </div>
+    </script>
+
+    <script id="movie-tiny-person-template" type="text/x-handlebars-template">
+      <div class="movie-tiny-person-list" data-tmdb-id="{{id}}">
+        <img src="https://image.tmdb.org/t/p/w200_and_h300_bestv2{{profile_path}}">
+        <h3>{{name}}</h3>
+        <p><a href="/bmt/person/{{id}}">Get More Details</a><p></p>
       </div>
     </script>
 

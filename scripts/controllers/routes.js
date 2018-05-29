@@ -19,4 +19,6 @@ page('/login', () => app.showOnly('#login'));
 
 page('/search/:page', (ctx) => app.movieView.handleGeneralSearch(ctx));
 
+page('/credits/:movieId', (ctx) => console.log('credits for movie', ctx.params.movieId));
+
 page();

@@ -42,7 +42,7 @@ footer{
   text-align: center;
 }
 
-.movie-list-item {
+.movie-list-item, .movie-tiny-person-list {
   margin-top: 1em;
   background-color: #eeeeee;
   padding: 0.5em;
@@ -52,9 +52,14 @@ footer{
   float: left;
 }
 
-.movie-info {
+.movie-info, .movie-tiny-person-list {
   margin-top: 1em;
   text-align: center;
+}
+
+.movie-tiny-person-list img {
+  float: left;
+  width: 5em;
 }
 
 h3 {
