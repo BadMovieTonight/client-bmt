@@ -61,6 +61,16 @@ footer{
   outline: 1px solid darkblue;
 }
 
+#login {
+  width: 380px;
+  height: 400px;
+  z-index: 10;
+  border: 10px solid green;
+  background-color: darkgray;
+  position: fixed;
+  top: 50px;
+  left: 15%;
+}
 @media only screen and (min-width: 641px){
   body {
     width: 640px;
