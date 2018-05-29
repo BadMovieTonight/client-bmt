@@ -30,21 +30,35 @@ var app = app || {};
 
   movieView.handleGeneralSearch = function(ctx) {
     // console.log(ctx);
-    console.log('search string',$('#search').val());
-    $.get(`${app.ENVIRONMENT.apiUrl}/bmt/search`,
+    let search = $('#search').val();
+    let searchType = $('#search-type').val();
+    console.log('search string', search);
+    console.log('search drop down', searchType);
+    if (searchType === 'person'){
+      movieView.searchPeople(ctx, search);
+    } else {
+      movieView.searchMovies(ctx, search);
+    }
+  };
+  movieView.searchPeople = function (ctx, search){
+    console.log('search people', search);
+  };
+  movieView.searchMovies = function (ctx, search){
+    console.log('search movies', search);
+    $.get(`${app.ENVIRONMENT.apiUrl}/bmt/movies`,
       {searchFor: $('#search').val(),
         page: parseInt(ctx.params.page)
       })
       .then(response => {
         console.log('search returned',response.results);
         app.Movie.all = response.results
+          .filter(o => o.vote_average < 5)
           .map(o => new app.Movie(o));
         app.Movie.page = response.page;
         app.Movie.totalPages = response.total_pages;
         console.log(app.Movie.all);
         console.log('Page',response.page,'of',response.total_pages);
         movieView.initIndexPage();
-        // callback();
       })
       .catch(err => console.log('that didn\'t work'));
   };
