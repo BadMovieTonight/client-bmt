@@ -42,12 +42,18 @@ footer{
   text-align: center;
 }
 
-.movie-list-item, .movie-tiny-person-list, #login {
+.movie-list-item, .movie-tiny-person-list, .login-form, .page-nav-footer, #user-preferences {
   margin-top: 1em;
   background-color: #eeeeee;
   padding: 0.5em;
+  position: relative;
 }
 
+.fav-star {
+  position: absolute;
+  top: 0.8em;
+  right: .5em;
+}
 .movie-img {
   float: left;
 }
@@ -65,7 +71,8 @@ footer{
 h3 {
   font-size: 1.5em;
 }
-#login-form div {
+/* #login-form div { */
+.login-form div {
   border-bottom: 1px solid #efefef;
   margin: 10px;
   padding-bottom: 20px;
@@ -81,5 +88,11 @@ h3 {
 .login-button {
   float: right;
   margin-right: 265px;
+  text-align: left;
+}
+
+.create-account-button {
+  float: right;
+  margin-right: 190px;
   text-align: left;
 }

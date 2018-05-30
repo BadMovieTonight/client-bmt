@@ -102,6 +102,13 @@ input#search {
   height: 1.25em;
 }
 
+.fav-star {
+  display: none;
+  font-size: 2em;
+  text-decoration: none;
+  color: red;
+}
+
 @media only screen and (min-width:680px){
   nav li{
     float: left;

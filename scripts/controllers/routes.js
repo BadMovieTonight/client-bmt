@@ -38,6 +38,16 @@ page('/profile', () => {
   app.userView.initProfilePage();
 });
 
+page('/addToFavs/:id',(ctx) => {
+  console.log('adding id',ctx.params.id,'to favorites');
+  app.User.addToFavorites(ctx)
+});
+
+page('/removeFromFavs/:id',(ctx) => {
+  console.log('removing id',ctx.params.id,'from favorites');
+  app.User.removeFromFavorites(ctx)
+});
+
 page('/search', (ctx) => app.movieView.handleGeneralSearch(ctx));
 
 page('/search/:page', (ctx) => {

@@ -6,6 +6,7 @@ var app = app || {};
 
   function User(userObject) {
     Object.keys(userObject).forEach(key => this[key] = userObject[key]);
+    if (this.preferences) {this.preferences = JSON.parse(this.preferences);}
   }
 
   User.current;
@@ -17,8 +18,8 @@ var app = app || {};
     this.preferences = JSON.stringify({
       maxrating: 4,
       minratings: 25,
-      maxdate: new Date().toString(),
-      mindate: 'Mon Jan 01 1900 00:00:00 GMT-0700 (PDT)',
+      //maxdate: new Date().toString().slice(d.indexOf(' ')+1, 15),
+      mindate: 'Jan 01 1970',
       sortby: 'rating',
       favorites: []
     });
@@ -38,9 +39,9 @@ var app = app || {};
         id: this.id,
         username: this.username,
         password: this.password,
-        preferences: this.preferences,
+        preferences: JSON.stringify(this.preferences),
       }
-    }).then(() => console.log('did a thing'))
+    }).then(() => console.log('Updated database for',this.username))
       .catch(console.error);
   };
 
@@ -71,9 +72,7 @@ var app = app || {};
   };
 
   User.prototype.toHtml = function() {
-    let preferences = JSON.parse(this.preferences);
-    preferences.username = this.username;
-    return Handlebars.compile($('#user-pref-template').text())(preferences);
+    return Handlebars.compile($('#user-pref-template').text())(this.preferences);
   };
 
   //Function that gets a user from the database
@@ -120,6 +119,26 @@ var app = app || {};
       );
     });
   };
+
+  User.addToFavorites = (ctx, next) => {
+    // find index of movie with id = ctx.params.id
+    let favMovie = app.Movie.all.filter(m => m.id === parseInt(ctx.params.id));
+    console.log(favMovie);
+    User.current.preferences.favorites.push(favMovie[0]);
+    console.log('after push favs', User.current.preferences.favorites);
+    $(`#not-fav-${ctx.params.id}`).hide();
+    $(`#fav-${ctx.params.id}`).show();
+    User.current.updateUser(); 
+  }
+
+  User.removeFromFavorites = (ctx) => {
+    let notFavMovieIds = User.current.preferences.favorites.map(m => parseInt(m.id));
+    let idx = notFavMovieIds.indexOf(ctx.params.id);
+    User.current.preferences.favorites.splice(idx, 1);
+    $(`#fav-${ctx.params.id}`).hide();
+    $(`#not-fav-${ctx.params.id}`).show();
+    User.current.updateUser();
+  }
 
   module.User = User;
 })(app);
