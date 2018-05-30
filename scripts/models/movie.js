@@ -28,7 +28,7 @@ var app = app || {};
         // app.Movie.totalPages = response.total_pages;
         callback();
       })
-      .catch(err => console.log('that didn\'t work'));
+      .catch(err => console.log(err));
   };
 
   module.Movie = Movie;

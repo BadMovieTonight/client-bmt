@@ -110,7 +110,7 @@ var app = app || {};
         console.log('Page',response.page,'of',response.total_pages);
         movieView.initIndexPage();
       })
-      .catch(err => console.log('that didn\'t work'));
+      .catch(err => console.log(err));
   };
 
   module.movieView = movieView;

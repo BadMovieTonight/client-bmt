@@ -9,6 +9,7 @@
     <link rel="stylesheet" type="text/css" href="styles/base.css">
     <link rel="stylesheet" type="text/css" href="styles/layout.css">
     <link rel="stylesheet" type="text/css" href="styles/modules.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Fontdiner+Swanky">
     <link rel="icon" type="image/x-icon" href="https://avatars2.githubusercontent.com/u/18607604?v=3&s=200">
 
     <script id="movie-list-template" type="text/x-handlebars-template">
@@ -35,6 +36,16 @@
       </div>
     </script>
 
+    <script id="about-us-template" type="text/x-handlebars-template">
+      <h1>About the Developers</h1>
+      <div class="movie-list-item developer-details">
+        <img src="{{img_path}}" />
+        <h3>{{name}}</h3>
+        <p>{{bio}}</p>
+        <p>{{worst_movie}}</p>
+      </div>
+    </script>
+
     <script id="movie-tiny-person-template" type="text/x-handlebars-template">
       <div class="movie-tiny-person-list" data-tmdb-id="{{id}}">
         <img src="https://image.tmdb.org/t/p/w200_and_h300_bestv2{{profile_path}}">
@@ -47,11 +58,9 @@
   <body>
     <header>
       <section class="heading-group-h1 clearfix">
-        <h1>
-          Bad Movie Tonight
-        </h1>
+        <h1>Bad Movie Tonight</h1>
         <h2>A site dedicated to the worst of cinema</h2>
-        <div>
+        <div class="clearfix">
           <a href="/menu" class="icon-menu"></a>
           <form id="search-form">
             <input type="search" id="search" placeholder="Search"></input>
@@ -90,6 +99,8 @@
         </form>
       </section>
 
+      <section id="about-us" class="container"></section>
+
       <section id="movie-advanced-search" class="container">
         <h2>Find Movies</h2>
         <form id="advanced-search-form">
@@ -107,7 +118,7 @@
         </form>
       </section>
 
-      <section class="container" id="login">
+      <section id="login" class="container">
         <form id="login-form">
           <input type="text" id="username" placeholder="Username" required>
           <input type="password" id="password" placeholder="Password" required>
@@ -127,6 +138,7 @@
     <script src="scripts/views/userView.js"></script>
     <script src="scripts/models/movie.js"></script>
     <script src="scripts/views/movieView.js"></script>
+    <script src="scripts/views/aboutView.js"></script>
     <script src="scripts/app.js"></script>
     <script src="scripts/controllers/routes.js"></script>
     <script>
