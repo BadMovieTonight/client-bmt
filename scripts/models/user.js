@@ -17,8 +17,8 @@ var app = app || {};
     this.preferences = JSON.stringify({
       maxrating: 4,
       minratings: 25,
-      maxdate: new Date().toString(),
-      mindate: 'Mon Jan 01 1900 00:00:00 GMT-0700 (PDT)',
+      //maxdate: new Date().toString().slice(d.indexOf(' ')+1, 15),
+      mindate: 'Jan 01 1970',
       sortby: 'rating',
       favorites: []
     });

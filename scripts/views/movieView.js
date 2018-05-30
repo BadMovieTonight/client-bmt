@@ -17,13 +17,17 @@ var app = app || {};
 
   movieView.addPageNavFooter = function(){
     if (app.Movie.page){
-      let pageView = `<p>`;
+      let pageView = `<p class="page-nav-footer">`;
+      pageView += ` Page ${app.Movie.page} of ${app.Movie.totalPages} `;
       if (app.Movie.page > 1) {
-        pageView += `<a href= "/search/${app.Movie.page - 1}">⬅️ Prev</a>`;
+        pageView += `<a href= "/search/${app.Movie.page - 1}">Prev ⬅️</a>`;
+      } else {
+        pageView += `Prev ⬅️`;
       }
-      pageView += ` Page ${app.Movie.page} of ${app.Movie.totalPages}`;
       if (app.Movie.page < app.Movie.totalPages) {
-        pageView += `<a href= "/search/${app.Movie.page + 1}">➡️ Next</a>`;
+        pageView += ` <a href= "/search/${app.Movie.page + 1}">➡️ Next</a>`;
+      } else {
+        pageView += ` ➡️ Next`;
       }
       pageView += `<p>`;
 
