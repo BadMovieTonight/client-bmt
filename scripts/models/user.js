@@ -6,6 +6,7 @@ var app = app || {};
 
   function User(userObject) {
     Object.keys(userObject).forEach(key => this[key] = userObject[key]);
+    if (this.preferences) {this.preferences = JSON.parse(this.preferences);}
   }
 
   User.current;
@@ -40,7 +41,7 @@ var app = app || {};
         password: this.password,
         preferences: this.preferences,
       }
-    }).then(() => console.log('did a thing'))
+    }).then(() => console.log('Updated database for',this.username))
       .catch(console.error);
   };
 
@@ -71,9 +72,7 @@ var app = app || {};
   };
 
   User.prototype.toHtml = function() {
-    let preferences = JSON.parse(this.preferences);
-    preferences.username = this.username;
-    return Handlebars.compile($('#user-pref-template').text())(preferences);
+    return Handlebars.compile($('#user-pref-template').text())(this.preferences);
   };
 
   //Function that gets a user from the database

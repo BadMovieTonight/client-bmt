@@ -103,13 +103,11 @@ input#search {
 }
 
 .fav-star {
-  /* display: none; */
+  display: none;
   font-size: 2em;
   text-decoration: none;
   color: red;
 }
-
-.icon-star-full { display: none }
 
 @media only screen and (min-width:680px){
   nav li{

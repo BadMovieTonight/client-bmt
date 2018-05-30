@@ -17,8 +17,8 @@
         <img class="movie-img" src="{{poster_path}}">
         <span class="movie-info">
           <h3>{{title}}</h3>
-          <a href="/addToFavs" class="icon-star-empty fav-star"></a>
-          <a href="/removeFromFavs" class="icon-star-full fav-star"></a>
+          <a href="/addToFavs" id="not-fav-{{id}}" class="fav-star"></a>
+          <a href="/removeFromFavs" id="fav-{{id}}" class="fav-star"></a>
           <p><strong>Average Rating:</strong> {{vote_average}}/10</p>
           <p><strong>Released Date:</strong> {{release_date}}</p>
           <p class="overview">{{overview}}</p>
@@ -49,7 +49,7 @@
 
     <script id="user-pref-template" type="text/x-handlebars-template">
       <div id="user-preferences">
-        <h3>Hello {{username}}, here you can review your Preferences!</h3>
+        <h3>Here are your preferences:</h3>
         <ul>
           <li>Maximum overall rating: {{maxrating}}</li>
           <li>Minimum number of votes: {{minratings}}</li>

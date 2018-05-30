@@ -42,7 +42,7 @@ footer{
   text-align: center;
 }
 
-.movie-list-item, .movie-tiny-person-list, .login-form, .page-nav-footer {
+.movie-list-item, .movie-tiny-person-list, .login-form, .page-nav-footer, #user-preferences {
   margin-top: 1em;
   background-color: #eeeeee;
   padding: 0.5em;

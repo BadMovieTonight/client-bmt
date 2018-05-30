@@ -11,10 +11,18 @@ var app = app || {};
     $movieList.empty();
     app.Movie.getImages();
     app.Movie.all.forEach(elem => {$movieList.append(elem.toHtml());});
-
+    app.movieView.initFavStar();
     movieView.addPageNavFooter();
   };
 
+  movieView.initFavStar = function() {
+    if (app.User.current) {  // then we have a logged in user
+      // loop through their app.User.preferences.favorites array
+      //   if app.Movie.all contains the favorite's move ID
+      //      make full star visible
+      //   otherwise make empty star visible
+    }
+  }
   movieView.addPageNavFooter = function(){
     if (app.Movie.page){
       let pageView = `<p class="page-nav-footer">`;
