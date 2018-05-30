@@ -123,9 +123,17 @@
 
       <section id="login" class="container">
         <form id="login-form">
-          <input type="text" id="username" placeholder="Username" required>
-          <input type="password" id="password" placeholder="Password" required>
-          <button type="submit">Log In</button>
+          <div>
+            <label for="username" class="login-title">Username: </label> 
+            <input type="text" id="username" placeholder="Username" required>
+          </div>
+          <div>
+            <label for="password" class="login-title">Password: </label>
+            <input type="password" id="password" placeholder="Password" required>
+          </div>
+          <div id="login-button">
+            <button type="submit" class="login-button">Log In</button>
+          </div>
         </form>
       </section>
 

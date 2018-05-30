@@ -42,7 +42,7 @@ footer{
   text-align: center;
 }
 
-.movie-list-item, .movie-tiny-person-list {
+.movie-list-item, .movie-tiny-person-list, #login {
   margin-top: 1em;
   background-color: #eeeeee;
   padding: 0.5em;
@@ -64,4 +64,22 @@ footer{
 
 h3 {
   font-size: 1.5em;
+}
+#login-form div {
+  border-bottom: 1px solid #efefef;
+  margin: 10px;
+  padding-bottom: 20px;
+  width: 440px;
+  font-size: 1.1em;
+}
+.login-title {
+  float: left;
+  width: 100px;
+  text-align: right;
+  padding-right: 10px;
+}
+.login-button {
+  float: right;
+  margin-right: 265px;
+  text-align: left;
 }
