@@ -77,6 +77,22 @@ var app = app || {};
       .catch(err => console.log('that didn\'t work'));
   };
 
+  movieView.getPersonDetail = function(ctx){
+    $.get(`${app.ENVIRONMENT.apiUrl}/bmt/person/${ctx.params.id}`)
+      .then(response => {
+        console.log('search returned',response.results);
+        app.Movie.all = response.results
+          .map(o => new app.Movie(o));
+        app.Movie.all.map(o => o.media_type='person');
+        app.Movie.page = response.page;
+        app.Movie.totalPages = response.total_pages;
+        console.log(app.Movie.all);
+        console.log('Page',response.page,'of',response.total_pages);
+        movieView.initIndexPage();
+      })
+      .catch(err => console.log('that didn\'t work'));
+  };
+
   movieView.searchMovies = function (ctx, search){
     console.log('search movies', search);
     $.get(`${app.ENVIRONMENT.apiUrl}/bmt/movies`,

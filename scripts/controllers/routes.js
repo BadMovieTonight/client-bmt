@@ -21,4 +21,6 @@ page('/search/:page', (ctx) => app.movieView.handleGeneralSearch(ctx));
 
 page('/credits/:movieId', (ctx) => console.log('credits for movie', ctx.params.movieId));
 
+page('/bmt/person/:id', (ctx) => app.movieView.getPersonDetail(ctx));
+
 page();
