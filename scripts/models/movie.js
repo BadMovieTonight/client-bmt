@@ -24,6 +24,8 @@ var app = app || {};
     $.get(`${app.ENVIRONMENT.apiUrl}/homepage`)
       .then(response => {
         Movie.loadAll(response.results);
+        // app.Movie.page = response.page;
+        // app.Movie.totalPages = response.total_pages;
         callback();
       })
       .catch(err => console.log(err));

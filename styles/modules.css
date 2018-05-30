@@ -3,6 +3,11 @@ body > header {
   color: white;
 }
 
+select {
+  font-size: 1.3em;
+  color:black;
+}
+
 header > div {
   color: grey;
 }
@@ -19,7 +24,7 @@ nav {
 }
 
 ul {
-  display: none;
+  display: block;
   list-style-type: none;
   margin-left: 0em;
   padding-left: 0em;

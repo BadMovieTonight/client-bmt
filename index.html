@@ -20,6 +20,7 @@
           <p><strong>Average Rating:</strong> {{vote_average}}/10</p>
           <p><strong>Released Date:</strong> {{release_date}}</p>
           <p class="overview">{{overview}}</p>
+          <p><a href="/credits/{{id}}">Cast and Credits</a></p>
         </span>
       </div>
     </script>
@@ -45,6 +46,14 @@
       </div>
     </script>
 
+    <script id="movie-tiny-person-template" type="text/x-handlebars-template">
+      <div class="movie-tiny-person-list" data-tmdb-id="{{id}}">
+        <img src="https://image.tmdb.org/t/p/w200_and_h300_bestv2{{profile_path}}">
+        <h3>{{name}}</h3>
+        <p><a href="/bmt/person/{{id}}">Get More Details</a><p></p>
+      </div>
+    </script>
+
   </head>
   <body>
     <header>
@@ -55,24 +64,40 @@
           <a href="/menu" class="icon-menu"></a>
           <form id="search-form">
             <input type="search" id="search" placeholder="Search"></input>
-            <a href="/search">
+            <select id="search-type">
+              <option value="movie" selected>Movie</option>
+              <option value="person">Actor</option>
+            </select>
+            <a href="/search/1">
             <button type="submit" class="icon-search"></button></a>
           </form>
         </div>
-        <nav>        
-          <ul>
-            <li class="tab" data-content="movies"><a href="/" class="icon-home"> Home</a></li>
-            <li class="tab" data-content="login"><a href="/login" class="icon-key"> Sign in</a></li>
-            <li class="tab" data-content="preferences"><a href="/preferences" class="icon-cog"> Preferences</a></li>
-            <li class="tab" data-content="about"><a href="/about" class="icon-address-book"> About</a></li>
-          </ul>
-        </nav>
-      </section>
+      <nav>        
+        <ul>
+          <li class="tab" data-content="movies"><a href="/" class="icon-home"> Home</a></li>
+          <li class="tab" data-content="login-logout">
+            <a href="/login" class="icon-key"> Sign In</a>
+            <a href="/logout" class="icon-cross"> Sign Out</a>
+          </li>
+          <li class="tab" data-content="signup-profile">
+            <a href="/signup" class="icon-pencil2"> New User</a>
+            <a href="/profile" class="icon-user-tie"> My Profile</a>
+          </li>
+          <li class="tab" data-content="about"><a href="/about" class="icon-address-book"> About</a></li>
+        </ul>
+      </nav>
+    </section>
     </header>
     <main>
       <section id="movie-list" class="container"></section>
 
-      <section id="new-user" class="container"></section>
+      <section id="new-user" class="container">
+        <form id="new-user-form">
+          <input type="text" id="new-username" placeholder="Username">
+          <input type="password" id="new-password" placeholder="Password">
+          <button type="submit">Create Account</button>
+        </form>
+      </section>
 
       <section id="about-us" class="container"></section>
 
@@ -116,5 +141,9 @@
     <script src="scripts/views/aboutView.js"></script>
     <script src="scripts/app.js"></script>
     <script src="scripts/controllers/routes.js"></script>
+    <script>
+      $('a[href="/logout"]').hide();
+      $('a[href="/profile"]').hide();
+    </script>
   </body>
 </html>

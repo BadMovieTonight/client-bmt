@@ -7,6 +7,12 @@ var app = app || {};
   const userView = {};
 
   //Function that toggles elements on/off based on if a user is logged in.
+  userView.toggleUserView = function() {
+    $('a[href="/login"]').toggle();
+    $('a[href="/logout"]').toggle();
+    $('a[href="/signup"]').toggle();
+    $('a[href="/profile"]').toggle();
+  };
 
   module.userView = userView;
 })(app);
@@ -17,7 +23,5 @@ $('#login-form').on('submit', function(e) {
     username: $('#username').val(),
     password: $('#password').val(),
   };
-  $.get(`${app.ENVIRONMENT.apiUrl}/login/${user.username}`)
-    .then(dbuser => dbuser ? app.User.verify(dbuser, user.password) : alert('User does not exist'))
-    .catch(console.error());
+  app.User.getUser(user, app.User.verify, function(){alert('User does not exist')});
 });
