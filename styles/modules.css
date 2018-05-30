@@ -102,6 +102,10 @@ input#search {
   height: 1.25em;
 }
 
+a[href="/logout"], a[href="/profile"] {
+  display: none;
+}
+
 @media only screen and (min-width:680px){
   nav li{
     float: left;
