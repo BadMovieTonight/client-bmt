@@ -10,7 +10,7 @@ var app = app || {};
     let $movieList = $('#movie-list');
     $movieList.empty();
     app.showOnly('#movie-list');
-
+    app.Movie.getImages();
     app.Movie.all.forEach(elem => {$movieList.append(elem.toHtml());});
 
     movieView.addPageNavFooter();
@@ -36,6 +36,7 @@ var app = app || {};
     let $movieList = $('#movie-list');
     $movieList.empty();
     app.showOnly('#movie-list');
+    app.Movie.getImages();
     let template = Handlebars.compile($('#movie-tiny-person-template').text());
     app.Movie.all.forEach(p => 
       $('#movie-list').append(template(p)));
@@ -112,13 +113,25 @@ var app = app || {};
   };
 
   movieView.viewBadFilmography = function(actor) {
-    $.get(`${app.ENVIRONMENT.apiUrl}/movies/${actor}`).then(response => {
-      console.log(response);
-      app.Movie.all = response.results.map(o => new app.Movie(o));
-      app.Movie.page = response.page;
-      app.Movie.totalPages = response.total_pages;
-      movieView.initIndexPage();
-    }).catch(console.error);
+    $.get(`${app.ENVIRONMENT.apiUrl}/movies/${actor}`)
+      .then(response => {
+        app.Movie.all = response.results.map(o => new app.Movie(o));
+        app.Movie.page = response.page;
+        app.Movie.totalPages = response.total_pages;
+        movieView.initIndexPage();
+      }).catch(console.error);
+  };
+
+  movieView.viewCredits = function(movieId) {
+    $.get(`${app.ENVIRONMENT.apiUrl}/credits/${movieId}`)
+      .then(response => {
+        console.log(response);
+        app.Movie.all = response.cast.map(o => new app.Movie(o));
+        app.Movie.all.map(o => o.media_type='person');
+        app.Movie.page = response.page;
+        app.Movie.totalPages = response.total_pages;
+        movieView.initTinyPeoplePage();
+      });
   };
 
   module.movieView = movieView;
