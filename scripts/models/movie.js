@@ -25,10 +25,8 @@ var app = app || {};
   Movie.getImages = () => {
     Movie.all.forEach(movieObj => {
       if (movieObj.poster_path) {
-        console.log('whoop');
         movieObj.poster_path = app.tmdbImagePath + movieObj.poster_path;
       } else if (movieObj.profile_path) {
-        console.log('im run');
         movieObj.profile_path = app.tmdbImagePath + movieObj.profile_path;
       } else {
         movieObj.profile_path = app.placeholder;

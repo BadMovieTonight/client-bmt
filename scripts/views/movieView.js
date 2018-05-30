@@ -7,23 +7,46 @@ var app = app || {};
   const movieView = {};
 
   movieView.initIndexPage = function() {
+    // $('.fav-star').hide();
     let $movieList = $('#movie-list');
     $movieList.empty();
     app.Movie.getImages();
     app.Movie.all.forEach(elem => {$movieList.append(elem.toHtml());});
-
+    app.movieView.initFavStar();
     movieView.addPageNavFooter();
   };
 
+  movieView.initFavStar = function() {
+    if (app.User.current) {  // then we have a logged in user
+      $('.not-fav').show(); // show all the empty (not fav) stars
+      // map user's favorite movie id's to a new array
+      let userMovieIds = app.User.current.preferences.favorites.map(m => parseInt(m.id));
+      // loop through displayed movies and compare id with userMovieIds
+      app.Movie.all.forEach(m => {
+        if (userMovieIds.includes(m.id)) {
+          $(`#not-fav-${m.id}`).hide();
+          $(`#fav-${m.id}`).show();
+        }
+      });
+    
+      //   if app.Movie.all contains the favorite's move ID
+      //      make full star visible
+      //   otherwise make empty star visible
+    }
+  }
   movieView.addPageNavFooter = function(){
     if (app.Movie.page){
-      let pageView = `<p>`;
+      let pageView = `<p class="page-nav-footer">`;
+      pageView += ` Page ${app.Movie.page} of ${app.Movie.totalPages} `;
       if (app.Movie.page > 1) {
-        pageView += `<a href= "/search/${app.Movie.page - 1}">⬅️ Prev</a>`;
+        pageView += `<a href= "/search/${app.Movie.page - 1}">Prev ⬅️</a>`;
+      } else {
+        pageView += `Prev ⬅️`;
       }
-      pageView += ` Page ${app.Movie.page} of ${app.Movie.totalPages}`;
       if (app.Movie.page < app.Movie.totalPages) {
-        pageView += `<a href= "/search/${app.Movie.page + 1}">➡️ Next</a>`;
+        pageView += ` <a href= "/search/${app.Movie.page + 1}">➡️ Next</a>`;
+      } else {
+        pageView += ` ➡️ Next`;
       }
       pageView += `<p>`;
 
