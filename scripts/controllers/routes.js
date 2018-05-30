@@ -23,4 +23,15 @@ page('/credits/:movieId', (ctx) => console.log('credits for movie', ctx.params.m
 
 page('/bmt/person/:id', (ctx) => app.movieView.getPersonDetail(ctx));
 
+//logout route doesnt work for some reason
+page('/logout', () => {
+  app.User.current = null;
+  app.userView.toggleUserView();
+  page('/');
+});
+
+page('/search', (ctx) => app.movieView.handleGeneralSearch(ctx));
+
+page('/signup', () => app.showOnly('#new-user'));
+
 page();
