@@ -14,8 +14,6 @@ var app = app || {};
     app.Movie.all.forEach(elem => {$movieList.append(elem.toHtml());});
 
     movieView.addPageNavFooter();
-
-
   };
 
   movieView.addPageNavFooter = function(){
@@ -111,6 +109,16 @@ var app = app || {};
         movieView.initIndexPage();
       })
       .catch(err => console.log(err));
+  };
+
+  movieView.viewBadFilmography = function(actor) {
+    $.get(`${app.ENVIRONMENT.apiUrl}/movies/${actor}`).then(response => {
+      console.log(response);
+      app.Movie.all = response.results.map(o => new app.Movie(o));
+      app.Movie.page = response.page;
+      app.Movie.totalPages = response.total_pages;
+      movieView.initIndexPage();
+    }).catch(console.error);
   };
 
   module.movieView = movieView;
