@@ -26,7 +26,10 @@ page('/logout', () => {
 
 page('/search', (ctx) => app.movieView.handleGeneralSearch(ctx));
 
-page('/search/:page', (ctx) => app.movieView.handleGeneralSearch(ctx));
+page('/search/:page', (ctx) => {
+  $(document).scrollTop( $("#header").offset().top );
+  app.movieView.handleGeneralSearch(ctx)
+});
 
 page('/credits/:movieId', (ctx) => console.log('credits for movie', ctx.params.movieId));
 
