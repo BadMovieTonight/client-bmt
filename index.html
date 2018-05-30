@@ -14,7 +14,7 @@
 
     <script id="movie-list-template" type="text/x-handlebars-template">
       <div class="movie-list-item" id="{{id}}">
-        <img src="https://image.tmdb.org/t/p/w200_and_h300_bestv2{{poster_path}}" class="movie-img">
+        <img class="movie-img" src="https://image.tmdb.org/t/p/w200_and_h300_bestv2{{poster_path}}">
         <span class="movie-info">
           <h3>{{title}}</h3>
           <p><strong>Average Rating:</strong> {{vote_average}}/10</p>
@@ -37,12 +37,13 @@
     </script>
 
     <script id="about-us-template" type="text/x-handlebars-template">
-      <h1>About the Developers</h1>
-      <div class="movie-list-item developer-details">
-        <img src="{{img_path}}" />
-        <h3>{{name}}</h3>
-        <p>{{bio}}</p>
-        <p>{{worst_movie}}</p>
+      <div class="movie-list-item">
+        <img class="person-img" src="{{img_path}}" />
+        <div class="movie-info developer-details">
+          <h3>{{name}}</h3>
+          <p>{{bio}}</p>
+          <p><strong>Choice for worst movie:</strong> {{worst_movie}}</p>
+        </div>
       </div>
     </script>
 
@@ -99,7 +100,9 @@
         </form>
       </section>
 
-      <section id="about-us" class="container"></section>
+      <section id="about-us" class="container">
+        <h1>About the Developers</h1>
+      </section>
 
       <section id="movie-advanced-search" class="container">
         <h2>Find Movies</h2>

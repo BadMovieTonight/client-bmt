@@ -81,8 +81,13 @@ main p{
   height: 125px;
 }
 
+.developer-details {
+  min-height: 160px;
+}
+
 .person-img {
   float: left;
+  width: 200px;
 }
 
 input#search {
