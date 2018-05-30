@@ -9,25 +9,24 @@ var app = app || {};
   }
 
   //Function that adds the default filters if none present
-  User.prototype.setDefaultFilters = function() {
-    console.log('im run');
+  User.prototype.setDefaultPrefs = function() {
     this.preferences = JSON.stringify({
       maxrating: 4,
       minratings: 100,
       maxdate: new Date().toString(),
       mindate: 'Mon Jan 01 1900 00:00:00 GMT-0700 (PDT)',
-      sortby: 'rating'
+      sortby: 'rating',
+      favorites: []
     });
   };
 
   //Function that updates the filters on form update
-  User.prototype.updateFilters = function() {
+  User.prototype.updatePrefs = function() {
 
   };
 
   //Function that updates the database
   User.prototype.updateUser = function() {
-    console.log(this);
     $.ajax({
       url: `${app.ENVIRONMENT.apiUrl}/users/update`,
       method: 'PUT',
@@ -43,25 +42,57 @@ var app = app || {};
 
   //Function that adds a user to the database
   User.prototype.addUser = function() {
-
+    console.log(this);
+    this.setDefaultPrefs();
+    $.ajax({
+      url: `${app.ENVIRONMENT.apiUrl}/users/new`,
+      method: 'POST',
+      data: {
+        username: this.username,
+        password: this.password,
+        preferences: this.preferences
+      }
+    }).then(() => {
+      alert('User created');
+      page('/');
+    }).catch(console.error);
   };
 
   //Function that removes a user from the database
   User.prototype.removeUser = function() {
+    $.ajax({
+      url: `${app.ENVIRONMENT.apiUrl}/users/remove/${this.id}`,
+      method: 'DELETE'
+    }).catch(console.error);
+  };
 
+  //Function that gets a user from the database
+  User.getUser = function(userObject, truecallback, falsecallback) {
+    $.get(`${app.ENVIRONMENT.apiUrl}/login/${userObject.username}`)
+      .then(dbuser => {
+        if (dbuser) {
+          User.dbuser = dbuser;
+          User.test = userObject;
+          truecallback();
+        } else falsecallback();
+      })
+      .catch(console.error());
   };
 
   User.current;
+  User.dbuser;
+  User.test;
 
-  User.verify = function(userObject, password) {
-    if (password === userObject.password) {
-      User.current = new User(userObject);
+  //Refactor verify so that it doesn't need arguments
+  User.verify = function() {
+    if (User.test.password === User.dbuser.password) {
+      User.current = new User(User.dbuser);
       if (!User.current.preferences) {
-        User.current.setDefaultFilters();
-        //I want to update the user in the database here, but calling User.current.updateUser() doesn't work.
+        User.current.setDefaultPrefs();
         User.current.updateUser();
       }
       // Make sure that the filters are populated with the user preferences.
+      app.userView.toggleUserView();
       page('/');
     } else alert('Incorrect password');
   };
@@ -69,7 +100,16 @@ var app = app || {};
   module.User = User;
 })(app);
 
-//Event listener for filter form change
-$('#search-form').on('change', function(e) {
+$('#new-user-form').on('submit', function(e){
+  e.preventDefault();
+  let userObject = {
+    username: $('#new-username').val(),
+    password: $('#new-password').val()
+  };
 
+  //Logic that checks if there is a user in the database with the same username.
+  app.User.getUser(userObject,
+    function(){alert('User already exists');},
+    function(){new app.User(userObject).addUser();}
+  );
 });

@@ -33,3 +33,4 @@ Package management by NPM.
 **NPM** - [NPM](https://www.npmjs.com/)  
 **Express** - [Express](https://expressjs.com/)  
 **PostgreSQL** - [PostgreSQL](https://www.postgresql.org/)
+**Google Fonts** - [font-family: 'Fontdiner Swanky'](https://fonts.google.com/?query=fontdiner+swanky)

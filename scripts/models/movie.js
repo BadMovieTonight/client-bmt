@@ -11,8 +11,11 @@ var app = app || {};
   Movie.all = [];
 
   Movie.prototype.toHtml = function() {
-    let template = Handlebars.compile($('#movie-list-template').text());
-    return template(this);
+    if (!this.media_type || this.media_type === 'movie') {
+      return Handlebars.compile($('#movie-list-template').text())(this);
+    } else if (this.media_type === 'person') {
+      return Handlebars.compile($('#movie-list-person-template').text())(this);
+    }
   };
 
   Movie.loadAll = movieData => {Movie.all = movieData.map(movieObj => new Movie(movieObj));};
@@ -21,9 +24,11 @@ var app = app || {};
     $.get(`${app.ENVIRONMENT.apiUrl}/homepage`)
       .then(response => {
         Movie.loadAll(response.results);
+        // app.Movie.page = response.page;
+        // app.Movie.totalPages = response.total_pages;
         callback();
       })
-      .catch(err => console.log('that didn\'t work'));
+      .catch(err => console.log(err));
   };
 
   module.Movie = Movie;

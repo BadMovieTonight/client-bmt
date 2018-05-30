@@ -3,9 +3,9 @@ body > header {
   color: white;
 }
 
-.heading-group-h1 {
-  display: block;
-  padding: .2em 1em 1em 1em;
+select {
+  font-size: 1.3em;
+  color:black;
 }
 
 header > div {
@@ -23,17 +23,8 @@ nav {
   padding-bottom: 0.7em;
 }
 
-.clearfix:after {
-  visibility: hidden;
-  display: block;
-  font-size: 0;
-  content: " ";
-  clear: both;
-  height: 0;
-}
-
 ul {
-  display: none;
+  display: block;
   list-style-type: none;
   margin-left: 0em;
   padding-left: 0em;
@@ -43,8 +34,8 @@ ul {
 li {
   font-size: 1.5em;
   border-bottom: 1px solid grey;
-  padding-bottom: .7em;
-  padding-top: 0.5em;
+  padding-bottom: 1.5em;
+  padding-top: 1em;
   padding-left: 0.2em;
 }
 
@@ -58,10 +49,6 @@ nav a {
   float: left;
 }
 
-li:first-child{
-  padding-top: 7em;
-}
-
 main {
   padding: 0 1em;
 }
@@ -70,36 +57,48 @@ main p{
   line-height: 1.5em;
 }
 
-#about ul{
+.clearfix:after {
+  visibility: hidden;
   display: block;
-  list-style-type: circle;
-  padding-left: 2.5em;
+  font-size: 0;
+  content: " ";
+  clear: both;
+  height: 0;
 }
 
-#about li {
-  border-bottom: none;
-  padding-left: 0em;
-  float:none;
-  padding-top: 0;
+.heading-group-h1 {
+  padding: .2em 1em 1em 1em;
 }
 
-@media only screen and (min-width:640px){
-  .heading-group-h1 {
-    width:100%;
-    float:none;
-  }
+.heading-group-h1 h1{
+  font-family: 'Fontdiner Swanky', cursive;
+}
 
+.overview { 
+  font-family: Georgia, 'Times New Roman', Times, serif;
+  text-align: center;
+  overflow-y: auto;
+  height: 125px;
+}
+
+.person-img {
+  float: left;
+}
+
+input#search {
+  color: black;
+}
+
+#search {
+  height: 1.25em;
+}
+
+@media only screen and (min-width:680px){
   li{
     float: left;
     border-bottom: none;
+    padding-top: .5em;
+    padding-bottom: .5em;
     padding-left: 1em;
-  }
-
-  li:hover a {
-    color: rgb(17, 17, 114);
-  }
-
-  li:first-child{
-    padding-top: 0.5em;
   }
 }

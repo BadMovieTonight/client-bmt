@@ -3,44 +3,86 @@
 <html>
   <head>
     <title>Bad Movie Tonight: The best of the worst of Hollywood</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" type="text/css" href="styles/vendor/styles/normalize.css">
     <link rel="stylesheet" type="text/css" href="styles/vendor/styles/icons.css">
     <link rel="stylesheet" type="text/css" href="styles/base.css">
     <link rel="stylesheet" type="text/css" href="styles/layout.css">
     <link rel="stylesheet" type="text/css" href="styles/modules.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Fontdiner+Swanky">
     <link rel="icon" type="image/x-icon" href="https://avatars2.githubusercontent.com/u/18607604?v=3&s=200">
 
     <script id="movie-list-template" type="text/x-handlebars-template">
       <div class="movie-list-item" id="{{id}}">
-        <img src="https://image.tmdb.org/t/p/w200_and_h300_bestv2{{poster_path}}">
-        <h3>{{title}}</h3>
-        <p>{{vote_average}}</p>
-        <p>{{release_date}}</p>
-        <p>{{overview}}</p>
+        <img src="https://image.tmdb.org/t/p/w200_and_h300_bestv2{{poster_path}}" class="movie-img">
+        <span class="movie-info">
+          <h3>{{title}}</h3>
+          <p><strong>Average Rating:</strong> {{vote_average}}/10</p>
+          <p><strong>Released Date:</strong> {{release_date}}</p>
+          <p class="overview">{{overview}}</p>
+          <p><a href="/credits/{{id}}">Cast and Credits</a></p>
+        </span>
+      </div>
+    </script>
+
+    <script id="movie-list-person-template" type="text/x-handlebars-template">
+      <div class="movie-list-item" data-tmdb-id="{{id}}" data-imdb-id="{{imdb_id}}">
+        <img src="https://image.tmdb.org/t/p/w200_and_h300_bestv2{{profile_path}}">
+        <h3>{{name}}</h3>
+        <p>Born: {{birthday}}</p>
+        <p>Birthplace: {{place_of_birth}}</p>
+        <p>Popularity ranking: {{popularity}}</p>
+        <p>{{biography}}</p>
+      </div>
+    </script>
+
+    <script id="about-us-template" type="text/x-handlebars-template">
+      <h1>About the Developers</h1>
+      <div class="movie-list-item developer-details">
+        <img src="{{img_path}}" />
+        <h3>{{name}}</h3>
+        <p>{{bio}}</p>
+        <p>{{worst_movie}}</p>
+      </div>
+    </script>
+
+    <script id="movie-tiny-person-template" type="text/x-handlebars-template">
+      <div class="movie-tiny-person-list" data-tmdb-id="{{id}}">
+        <img src="https://image.tmdb.org/t/p/w200_and_h300_bestv2{{profile_path}}">
+        <h3>{{name}}</h3>
+        <p><a href="/bmt/person/{{id}}">Get More Details</a><p></p>
       </div>
     </script>
 
   </head>
   <body>
-    <header class="clearfix">
-      <section class="heading-group-h1">
-        <h1>
-          Bad Movie Tonight
-        </h1>
+    <header>
+      <section class="heading-group-h1 clearfix">
+        <h1>Bad Movie Tonight</h1>
         <h2>A site dedicated to the worst of cinema</h2>
-        <div>
+        <div class="clearfix">
           <a href="/menu" class="icon-menu"></a>
           <form id="search-form">
-            <input type="text" id="search" placeholder="Search"></input>
-            <a href="/search">
-            <button type="search" class="icon-search"></button></a>
+            <input type="search" id="search" placeholder="Search"></input>
+            <select id="search-type">
+              <option value="movie" selected>Movie</option>
+              <option value="person">Actor</option>
+            </select>
+            <a href="/search/1">
+            <button type="submit" class="icon-search"></button></a>
           </form>
         </div>
       <nav>        
         <ul>
           <li class="tab" data-content="movies"><a href="/" class="icon-home"> Home</a></li>
-          <li class="tab" data-content="login"><a href="/login" class="icon-key"> Sign in</a></li>
-          <li class="tab" data-content="preferences"><a href="/preferences" class="icon-cog"> Preferences</a></li>
+          <li class="tab" data-content="login-logout">
+            <a href="/login" class="icon-key"> Sign In</a>
+            <a href="/logout" class="icon-cross"> Sign Out</a>
+          </li>
+          <li class="tab" data-content="signup-profile">
+            <a href="/signup" class="icon-pencil2"> New User</a>
+            <a href="/profile" class="icon-user-tie"> My Profile</a>
+          </li>
           <li class="tab" data-content="about"><a href="/about" class="icon-address-book"> About</a></li>
         </ul>
       </nav>
@@ -49,7 +91,15 @@
     <main>
       <section id="movie-list" class="container"></section>
 
-      <section id="new-user" class="container"></section>
+      <section id="new-user" class="container">
+        <form id="new-user-form">
+          <input type="text" id="new-username" placeholder="Username">
+          <input type="password" id="new-password" placeholder="Password">
+          <button type="submit">Create Account</button>
+        </form>
+      </section>
+
+      <section id="about-us" class="container"></section>
 
       <section id="movie-advanced-search" class="container">
         <h2>Find Movies</h2>
@@ -68,7 +118,7 @@
         </form>
       </section>
 
-      <section class="container" id="login">
+      <section id="login" class="container">
         <form id="login-form">
           <input type="text" id="username" placeholder="Username" required>
           <input type="password" id="password" placeholder="Password" required>
@@ -88,7 +138,12 @@
     <script src="scripts/views/userView.js"></script>
     <script src="scripts/models/movie.js"></script>
     <script src="scripts/views/movieView.js"></script>
+    <script src="scripts/views/aboutView.js"></script>
     <script src="scripts/app.js"></script>
     <script src="scripts/controllers/routes.js"></script>
+    <script>
+      $('a[href="/logout"]').hide();
+      $('a[href="/profile"]').hide();
+    </script>
   </body>
 </html>

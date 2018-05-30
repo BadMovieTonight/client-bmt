@@ -1,8 +1,3 @@
-/* address {
-  display: inline-block;
-  font-style: italic;
-  font-weight: bold;
-} */
 h1 {
   font-size: 1.6em;
 }
@@ -19,26 +14,16 @@ h2 {
 
 .heading-group-h1 div {
   position: relative;
-  /* float: left; */
-  /* vertical-align: center; */
 }
 
-.heading-group-h1 form {
-  /* display: inline-block; */
-  /* line-height: 1.7em; */
-  /* float:left; */
-  /* width: 100%; */
-  /* margin: 0;
-  padding: 0; */
-}
 .heading-group-h1 input {
-  /* line-height: 1.6em; */
   font-size: 1.3em;
-  width: 75%;
+  width: 65%;
   margin-left: 1em;
   margin-right: 0em;
   padding: 0;
 }
+
 .heading-group-h1 form button {
   position: absolute;
   font-size: 1.4em;
@@ -57,55 +42,26 @@ footer{
   text-align: center;
 }
 
-.movie-list-item {
-  outline: 1px solid darkblue;
+.movie-list-item, .movie-tiny-person-list {
+  margin-top: 1em;
+  background-color: #eeeeee;
+  padding: 0.5em;
 }
 
-@media only screen and (min-width: 641px){
-  body {
-    width: 640px;
-  }
-  .pull-left {
-    float: left;
-  }
-  
-  .pull-right {
-    float: right;
-  } 
-  h1 {
-    font-size: 1.8em;
-  }
-  h2 {
-    font-size: 1.2em;
-  } 
+.movie-img {
+  float: left;
 }
 
-@media only screen and (min-width: 850px){
-  body {
-    width: 750px;
-  }
-  .heading-group-h1 input {
-    width: 60%;
-  }
-  h1 {
-    font-size: 2em;
-  }
-  h2 {
-    font-size: 1.4em;
-  }
+.movie-info, .movie-tiny-person-list {
+  margin-top: 1em;
+  text-align: center;
 }
 
-@media only screen and (min-width: 961px){
-  body {
-    width: 960px;
-  }
-  .heading-group-h1 input {
-    width: 50%;
-  }
-  h1 {
-    font-size: 2.2em;
-  }
-  h2 {
-    font-size: 1.6em;
-  }
+.movie-tiny-person-list img {
+  float: left;
+  width: 5em;
+}
+
+h3 {
+  font-size: 1.5em;
 }
