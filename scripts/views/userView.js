@@ -23,5 +23,5 @@ $('#login-form').on('submit', function(e) {
     username: $('#username').val(),
     password: $('#password').val(),
   };
-  app.User.getUser(user, app.User.verify, function(){alert('User does not exist')});
+  app.User.getUser(user, app.User.verify, function(){alert('User does not exist');});
 });

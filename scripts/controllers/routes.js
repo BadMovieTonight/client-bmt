@@ -14,9 +14,15 @@ page('/menu', ctx => {
   app.toggleMenu();
 });
 
-page('/signup', () => app.showOnly('#new-user'));
+page('/signup', () => {
+  app.toggleMenu();
+  app.showOnly('#new-user');
+});
 
-page('/login', () => app.showOnly('#login'));
+page('/login', () => {
+  app.toggleMenu();
+  app.showOnly('#login');
+});
 
 page('/logout', () => {
   app.User.current = null;
