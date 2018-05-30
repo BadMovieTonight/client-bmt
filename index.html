@@ -14,7 +14,7 @@
 
     <script id="movie-list-template" type="text/x-handlebars-template">
       <div class="movie-list-item" id="{{id}}">
-        <img class="movie-img" src="https://image.tmdb.org/t/p/w200_and_h300_bestv2{{poster_path}}">
+        <img class="movie-img" src="{{poster_path}}">
         <span class="movie-info">
           <h3>{{title}}</h3>
           <p><strong>Average Rating:</strong> {{vote_average}}/10</p>
@@ -27,12 +27,13 @@
 
     <script id="movie-list-person-template" type="text/x-handlebars-template">
       <div class="movie-list-item" data-tmdb-id="{{id}}" data-imdb-id="{{imdb_id}}">
-        <img src="https://image.tmdb.org/t/p/w200_and_h300_bestv2{{profile_path}}">
+        <img src="{{profile_path}}">
         <h3>{{name}}</h3>
         <p>Born: {{birthday}}</p>
         <p>Birthplace: {{place_of_birth}}</p>
         <p>Popularity ranking: {{popularity}}</p>
         <p>{{biography}}</p>
+        <p><a href="/movies/{{id}}">Bad Filmography</a></p>
       </div>
     </script>
 
@@ -49,7 +50,7 @@
 
     <script id="movie-tiny-person-template" type="text/x-handlebars-template">
       <div class="movie-tiny-person-list" data-tmdb-id="{{id}}">
-        <img src="https://image.tmdb.org/t/p/w200_and_h300_bestv2{{profile_path}}">
+        <img src="{{profile_path}}">
         <h3>{{name}}</h3>
         <p><a href="/bmt/person/{{id}}">Get More Details</a><p></p>
       </div>
