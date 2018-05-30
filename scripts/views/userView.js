@@ -26,5 +26,11 @@ var app = app || {};
     });
   };
 
+  userView.initProfilePage = function() {
+    let $userProfile = $('#user-profile');
+    $userProfile.empty();
+    $userProfile.append(app.User.current.toHtml());
+  };
+
   module.userView = userView;
 })(app);

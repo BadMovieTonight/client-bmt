@@ -30,7 +30,6 @@ var app = app || {};
     app.toggleMenu();
     let $aboutUs = $('#about-us');
     $aboutUs.empty();
-    app.showOnly('#about-us');
 
     Developer.all.forEach(elem => {$aboutUs.append(elem.toHtml());});
   };

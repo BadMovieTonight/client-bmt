@@ -9,13 +9,10 @@ var app = app || {};
   movieView.initIndexPage = function() {
     let $movieList = $('#movie-list');
     $movieList.empty();
-    app.showOnly('#movie-list');
 
     app.Movie.all.forEach(elem => {$movieList.append(elem.toHtml());});
 
     movieView.addPageNavFooter();
-
-
   };
 
   movieView.addPageNavFooter = function(){
@@ -39,7 +36,7 @@ var app = app || {};
     $movieList.empty();
     app.showOnly('#movie-list');
     let template = Handlebars.compile($('#movie-tiny-person-template').text());
-    app.Movie.all.forEach(p => 
+    app.Movie.all.forEach(p =>
       $('#movie-list').append(template(p)));
     movieView.addPageNavFooter();
   };

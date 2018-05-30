@@ -8,11 +8,15 @@ var app = app || {};
     Object.keys(userObject).forEach(key => this[key] = userObject[key]);
   }
 
+  User.current;
+  User.dbuser;
+  User.test;
+
   //Function that adds the default filters if none present
   User.prototype.setDefaultPrefs = function() {
     this.preferences = JSON.stringify({
       maxrating: 4,
-      minratings: 100,
+      minratings: 25,
       maxdate: new Date().toString(),
       mindate: 'Mon Jan 01 1900 00:00:00 GMT-0700 (PDT)',
       sortby: 'rating',
@@ -66,6 +70,12 @@ var app = app || {};
     }).catch(console.error);
   };
 
+  User.prototype.toHtml = function() {
+    let preferences = JSON.parse(this.preferences);
+    preferences.username = this.username;
+    return Handlebars.compile($('#user-pref-template').text())(preferences);
+  };
+
   //Function that gets a user from the database
   User.getUser = function(userObject, truecallback, falsecallback) {
     $.get(`${app.ENVIRONMENT.apiUrl}/login/${userObject.username}`)
@@ -78,10 +88,6 @@ var app = app || {};
       })
       .catch(console.error());
   };
-
-  User.current;
-  User.dbuser;
-  User.test;
 
   //Refactor verify so that it doesn't need arguments
   User.verify = function() {
