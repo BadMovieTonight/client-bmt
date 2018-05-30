@@ -4,7 +4,7 @@ page('/', () => {
   delete app.Movie.page;
   delete app.Movie.totalPages;
   app.toggleMenu();
-  app.showOnly('#movie-search');
+  app.showOnly('#movie-list');
   app.Movie.fetchAll(app.movieView.initIndexPage);
 });
 
@@ -14,14 +14,28 @@ page('/menu', ctx => {
   app.toggleMenu();
 });
 
-page('/signup', () => app.showOnly('#new-user'));
+page('/signup', () => {
+  app.toggleMenu();
+  app.showOnly('#new-user');
+  app.User.newUser();
+});
 
-page('/login', () => app.showOnly('#login'));
+page('/login', () => {
+  app.toggleMenu();
+  app.showOnly('#login');
+  app.userView.userLogin();
+});
 
 page('/logout', () => {
   app.User.current = null;
   app.userView.toggleUserView();
   page('/');
+});
+
+page('/profile', () => {
+  app.toggleMenu();
+  app.showOnly('#user-profile');
+  app.userView.initProfilePage();
 });
 
 page('/search', (ctx) => app.movieView.handleGeneralSearch(ctx));

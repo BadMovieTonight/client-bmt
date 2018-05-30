@@ -9,7 +9,6 @@ var app = app || {};
   movieView.initIndexPage = function() {
     let $movieList = $('#movie-list');
     $movieList.empty();
-    app.showOnly('#movie-list');
     app.Movie.getImages();
     app.Movie.all.forEach(elem => {$movieList.append(elem.toHtml());});
 
@@ -38,7 +37,7 @@ var app = app || {};
     app.showOnly('#movie-list');
     app.Movie.getImages();
     let template = Handlebars.compile($('#movie-tiny-person-template').text());
-    app.Movie.all.forEach(p => 
+    app.Movie.all.forEach(p =>
       $('#movie-list').append(template(p)));
     movieView.addPageNavFooter();
   };

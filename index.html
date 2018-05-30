@@ -37,6 +37,26 @@
       </div>
     </script>
 
+    <script id="movie-tiny-person-template" type="text/x-handlebars-template">
+      <div class="movie-tiny-person-list" data-tmdb-id="{{id}}">
+        <img src="https://image.tmdb.org/t/p/w200_and_h300_bestv2{{profile_path}}">
+        <h3>{{name}}</h3>
+        <p><a href="/bmt/person/{{id}}">Get More Details</a><p></p>
+      </div>
+    </script>
+
+    <script id="user-pref-template" type="text/x-handlebars-template">
+      <div id="user-preferences">
+        <h3>Hello {{username}}, here you can review your Preferences!</h3>
+        <ul>
+          <li>Maximum overall rating: {{maxrating}}</li>
+          <li>Minimum number of votes: {{minratings}}</li>
+          <li>Movies are sorted by: {{sortby}}</li>
+          <li>Showing movies released between: {{mindate}} and {{maxdate}}</li>
+        </ul>
+      </div>
+    </script>
+
     <script id="about-us-template" type="text/x-handlebars-template">
       <div class="movie-list-item">
         <img class="person-img" src="{{img_path}}" />
@@ -48,19 +68,11 @@
       </div>
     </script>
 
-    <script id="movie-tiny-person-template" type="text/x-handlebars-template">
-      <div class="movie-tiny-person-list" data-tmdb-id="{{id}}">
-        <img src="{{profile_path}}">
-        <h3>{{name}}</h3>
-        <p><a href="/bmt/person/{{id}}">Get More Details</a><p></p>
-      </div>
-    </script>
-
   </head>
   <body>
     <header id="header">
       <section class="heading-group-h1 clearfix">
-        <h1>Bad Movie Tonight</h1>
+        <a href="/"><h1>Bad Movie Tonight</h1></a>
         <h2>A site dedicated to the worst of cinema</h2>
         <div class="clearfix">
           <a href="/menu" class="icon-menu"></a>
@@ -137,6 +149,8 @@
           </div>
         </form>
       </section>
+
+      <section id="user-profile" class="container"></section>
 
     </main>
     <footer>
