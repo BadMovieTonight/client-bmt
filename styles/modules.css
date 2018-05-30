@@ -102,6 +102,10 @@ input#search {
   height: 1.25em;
 }
 
+a[href="/logout"], a[href="/profile"] {
+  display: none;
+}
+
 .fav-star {
   display: none;
   font-size: 2em;

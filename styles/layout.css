@@ -1,9 +1,11 @@
 h1 {
   font-size: 1.6em;
 }
+
 h2 {
   font-size: 1.1em;
 }
+
 .icon-menu {
   float: left;
   font-size: 2.5em;
@@ -44,8 +46,10 @@ footer{
 
 .movie-list-item, .movie-tiny-person-list, .login-form, .page-nav-footer, #user-preferences {
   margin-top: 1em;
+  margin-left: 2em;
   background-color: #eeeeee;
   padding: 0.5em;
+  box-shadow: 8px 8px 6px -6px black;
   position: relative;
 }
 
@@ -55,12 +59,17 @@ footer{
   right: .5em;
 }
 .movie-img {
+  margin-left: 7px;
+  margin-top: 10px;
+  margin-right: 7px;
   float: left;
+  box-shadow: 8px 8px 5px -6px rgb(133, 131, 131);
 }
 
 .movie-info, .movie-tiny-person-list {
   margin-top: 1em;
   text-align: center;
+  box-shadow: 0 8px 6px -6px black;
 }
 
 .movie-tiny-person-list img {
@@ -71,7 +80,7 @@ footer{
 h3 {
   font-size: 1.5em;
 }
-/* #login-form div { */
+
 .login-form div {
   border-bottom: 1px solid #efefef;
   margin: 10px;
