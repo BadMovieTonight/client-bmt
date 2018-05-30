@@ -17,8 +17,8 @@
         <img class="movie-img" src="{{poster_path}}">
         <span class="movie-info">
           <h3>{{title}}</h3>
-          <a href="/addToFavs" id="not-fav-{{id}}" class="fav-star"></a>
-          <a href="/removeFromFavs" id="fav-{{id}}" class="fav-star"></a>
+          <a href="/addToFavs/{{id}}" id="not-fav-{{id}}" class="icon-star-empty fav-star not-fav"></a>
+          <a href="/removeFromFavs/{{id}}" id="fav-{{id}}" class="icon-star-full fav-star is-fav"></a>
           <p><strong>Average Rating:</strong> {{vote_average}}/10</p>
           <p><strong>Released Date:</strong> {{release_date}}</p>
           <p class="overview">{{overview}}</p>

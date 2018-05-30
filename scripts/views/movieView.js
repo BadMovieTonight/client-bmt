@@ -7,6 +7,7 @@ var app = app || {};
   const movieView = {};
 
   movieView.initIndexPage = function() {
+    // $('.fav-star').hide();
     let $movieList = $('#movie-list');
     $movieList.empty();
     app.Movie.getImages();
@@ -17,7 +18,17 @@ var app = app || {};
 
   movieView.initFavStar = function() {
     if (app.User.current) {  // then we have a logged in user
-      // loop through their app.User.preferences.favorites array
+      $('.not-fav').show(); // show all the empty (not fav) stars
+      // map user's favorite movie id's to a new array
+      let userMovieIds = app.User.current.preferences.favorites.map(m => parseInt(m.id));
+      // loop through displayed movies and compare id with userMovieIds
+      app.Movie.all.forEach(m => {
+        if (userMovieIds.includes(m.id)) {
+          $(`#not-fav-${m.id}`).hide();
+          $(`#fav-${m.id}`).show();
+        }
+      });
+    
       //   if app.Movie.all contains the favorite's move ID
       //      make full star visible
       //   otherwise make empty star visible
