@@ -14,9 +14,11 @@
 
     <script id="movie-list-template" type="text/x-handlebars-template">
       <div class="movie-list-item" id="{{id}}">
-        <img class="movie-img" src="https://image.tmdb.org/t/p/w200_and_h300_bestv2{{poster_path}}">
+        <img class="movie-img" src="{{poster_path}}">
         <span class="movie-info">
           <h3>{{title}}</h3>
+          <a href="/addToFavs/{{id}}" id="not-fav-{{id}}" class="icon-star-empty fav-star not-fav"></a>
+          <a href="/removeFromFavs/{{id}}" id="fav-{{id}}" class="icon-star-full fav-star is-fav"></a>
           <p><strong>Average Rating:</strong> {{vote_average}}/10</p>
           <p><strong>Released Date:</strong> {{release_date}}</p>
           <p class="overview">{{overview}}</p>
@@ -27,12 +29,33 @@
 
     <script id="movie-list-person-template" type="text/x-handlebars-template">
       <div class="movie-list-item" data-tmdb-id="{{id}}" data-imdb-id="{{imdb_id}}">
-        <img src="https://image.tmdb.org/t/p/w200_and_h300_bestv2{{profile_path}}">
+        <img src="{{profile_path}}">
         <h3>{{name}}</h3>
         <p>Born: {{birthday}}</p>
         <p>Birthplace: {{place_of_birth}}</p>
         <p>Popularity ranking: {{popularity}}</p>
         <p>{{biography}}</p>
+        <p><a href="/movies/{{id}}">Bad Filmography</a></p>
+      </div>
+    </script>
+
+    <script id="movie-tiny-person-template" type="text/x-handlebars-template">
+      <div class="movie-tiny-person-list" data-tmdb-id="{{id}}">
+        <img src="{{profile_path}}">
+        <h3>{{name}}</h3>
+        <p><a href="/bmt/person/{{id}}">Get More Details</a><p></p>
+      </div>
+    </script>
+
+    <script id="user-pref-template" type="text/x-handlebars-template">
+      <div id="user-preferences">
+        <h3>Here are your preferences:</h3>
+        <ul>
+          <li>Maximum overall rating: {{maxrating}}</li>
+          <li>Minimum number of votes: {{minratings}}</li>
+          <li>Movies are sorted by: {{sortby}}</li>
+          <li>Showing movies released after: {{mindate}}</li>
+        </ul>
       </div>
     </script>
 
@@ -46,20 +69,11 @@
         </div>
       </div>
     </script>
-
-    <script id="movie-tiny-person-template" type="text/x-handlebars-template">
-      <div class="movie-tiny-person-list" data-tmdb-id="{{id}}">
-        <img src="https://image.tmdb.org/t/p/w200_and_h300_bestv2{{profile_path}}">
-        <h3>{{name}}</h3>
-        <p><a href="/bmt/person/{{id}}">Get More Details</a><p></p>
-      </div>
-    </script>
-
   </head>
   <body>
-    <header>
+    <header id="header">
       <section class="heading-group-h1 clearfix">
-        <h1>Bad Movie Tonight</h1>
+        <a href="/"><h1>Bad Movie Tonight</h1></a>
         <h2>A site dedicated to the worst of cinema</h2>
         <div class="clearfix">
           <a href="/menu" class="icon-menu"></a>
@@ -92,14 +106,6 @@
     <main>
       <section id="movie-list" class="container"></section>
 
-      <section id="new-user" class="container">
-        <form id="new-user-form">
-          <input type="text" id="new-username" placeholder="Username">
-          <input type="password" id="new-password" placeholder="Password">
-          <button type="submit">Create Account</button>
-        </form>
-      </section>
-
       <section id="about-us" class="container">
         <h1>About the Developers</h1>
       </section>
@@ -122,12 +128,46 @@
       </section>
 
       <section id="login" class="container">
-        <form id="login-form">
-          <input type="text" id="username" placeholder="Username" required>
-          <input type="password" id="password" placeholder="Password" required>
-          <button type="submit">Log In</button>
+        <form id="login-form" class="login-form">
+          <div>
+            <label for="username" class="login-title">Username: </label> 
+            <input type="text" id="username" placeholder="Username" required>
+          </div>
+          <div>
+            <label for="password" class="login-title">Password: </label>
+            <input type="password" id="password" placeholder="Password" required>
+          </div>
+          <div id="login-button">
+            <button type="submit" class="login-button">Log In</button>
+          </div>
         </form>
       </section>
+
+      <!-- <section id="new-user" class="container">
+          <form id="new-user-form">
+            <div></div>
+            <input type="text" id="new-username" placeholder="Username">
+            <input type="password" id="new-password" placeholder="Password">
+            <button type="submit">Create Account</button>
+          </form>
+        </section> -->
+          <section id="new-user" class="container">
+            <form id="new-user-form" class="login-form">
+              <div>
+                <label for="new-username" class="login-title">Username: </label> 
+                <input type="text" id="new-username" placeholder="Username" required>
+              </div>
+              <div>
+                <label for="new-password" class="login-title">Password: </label>
+                <input type="password" id="new-password" placeholder="Password" required>
+              </div>
+              <div id="login-button">
+                <button type="submit" class="create-account-button">Create Account</button>
+              </div>
+            </form>
+          </section>
+      
+      <section id="user-profile" class="container"></section>
 
     </main>
     <footer>
@@ -144,9 +184,5 @@
     <script src="scripts/views/aboutView.js"></script>
     <script src="scripts/app.js"></script>
     <script src="scripts/controllers/routes.js"></script>
-    <script>
-      $('a[href="/logout"]').hide();
-      $('a[href="/profile"]').hide();
-    </script>
   </body>
 </html>

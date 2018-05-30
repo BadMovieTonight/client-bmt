@@ -18,7 +18,22 @@ var app = app || {};
     }
   };
 
-  Movie.loadAll = movieData => {Movie.all = movieData.map(movieObj => new Movie(movieObj));};
+  Movie.loadAll = movieData => {
+    Movie.all = movieData.map(movieObj => new Movie(movieObj));
+  };
+
+  Movie.getImages = () => {
+    Movie.all.forEach(movieObj => {
+      if (movieObj.poster_path) {
+        movieObj.poster_path = app.tmdbImagePath + movieObj.poster_path;
+      } else if (movieObj.profile_path) {
+        movieObj.profile_path = app.tmdbImagePath + movieObj.profile_path;
+      } else {
+        movieObj.profile_path = app.placeholder;
+        movieObj.poster_path = app.placeholder;
+      }
+    });
+  };
 
   Movie.fetchAll = (callback) => {
     $.get(`${app.ENVIRONMENT.apiUrl}/homepage`)

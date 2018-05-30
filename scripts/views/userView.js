@@ -14,14 +14,23 @@ var app = app || {};
     $('a[href="/profile"]').toggle();
   };
 
+  userView.userLogin = function() {
+    $('#login-form').on('submit', function(e) {
+      e.preventDefault();
+      $('#login-form').off('submit');
+      let user = {
+        username: $('#username').val(),
+        password: $('#password').val(),
+      };
+      app.User.getUser(user, app.User.verify, function(){alert('User does not exist');});
+    });
+  };
+
+  userView.initProfilePage = function() {
+    let $userProfile = $('#user-profile');
+    $userProfile.empty();
+    $userProfile.append(app.User.current.toHtml());
+  };
+
   module.userView = userView;
 })(app);
-
-$('#login-form').on('submit', function(e) {
-  e.preventDefault();
-  let user = {
-    username: $('#username').val(),
-    password: $('#password').val(),
-  };
-  app.User.getUser(user, app.User.verify, function(){alert('User does not exist')});
-});

@@ -7,26 +7,46 @@ var app = app || {};
   const movieView = {};
 
   movieView.initIndexPage = function() {
+    // $('.fav-star').hide();
     let $movieList = $('#movie-list');
     $movieList.empty();
-    app.showOnly('#movie-list');
-
+    app.Movie.getImages();
     app.Movie.all.forEach(elem => {$movieList.append(elem.toHtml());});
-
+    app.movieView.initFavStar();
     movieView.addPageNavFooter();
-
-
   };
 
+  movieView.initFavStar = function() {
+    if (app.User.current) {  // then we have a logged in user
+      $('.not-fav').show(); // show all the empty (not fav) stars
+      // map user's favorite movie id's to a new array
+      let userMovieIds = app.User.current.preferences.favorites.map(m => parseInt(m.id));
+      // loop through displayed movies and compare id with userMovieIds
+      app.Movie.all.forEach(m => {
+        if (userMovieIds.includes(m.id)) {
+          $(`#not-fav-${m.id}`).hide();
+          $(`#fav-${m.id}`).show();
+        }
+      });
+    
+      //   if app.Movie.all contains the favorite's move ID
+      //      make full star visible
+      //   otherwise make empty star visible
+    }
+  }
   movieView.addPageNavFooter = function(){
     if (app.Movie.page){
-      let pageView = `<p>`;
+      let pageView = `<p class="page-nav-footer">`;
+      pageView += ` Page ${app.Movie.page} of ${app.Movie.totalPages} `;
       if (app.Movie.page > 1) {
-        pageView += `<a href= "/search/${app.Movie.page - 1}">⬅️ Prev</a>`;
+        pageView += `<a href= "/search/${app.Movie.page - 1}">Prev ⬅️</a>`;
+      } else {
+        pageView += `Prev ⬅️`;
       }
-      pageView += ` Page ${app.Movie.page} of ${app.Movie.totalPages}`;
       if (app.Movie.page < app.Movie.totalPages) {
-        pageView += `<a href= "/search/${app.Movie.page + 1}">➡️ Next</a>`;
+        pageView += ` <a href= "/search/${app.Movie.page + 1}">➡️ Next</a>`;
+      } else {
+        pageView += ` ➡️ Next`;
       }
       pageView += `<p>`;
 
@@ -38,8 +58,9 @@ var app = app || {};
     let $movieList = $('#movie-list');
     $movieList.empty();
     app.showOnly('#movie-list');
+    app.Movie.getImages();
     let template = Handlebars.compile($('#movie-tiny-person-template').text());
-    app.Movie.all.forEach(p => 
+    app.Movie.all.forEach(p =>
       $('#movie-list').append(template(p)));
     movieView.addPageNavFooter();
   };
@@ -111,6 +132,28 @@ var app = app || {};
         movieView.initIndexPage();
       })
       .catch(err => console.log(err));
+  };
+
+  movieView.viewBadFilmography = function(actor) {
+    $.get(`${app.ENVIRONMENT.apiUrl}/movies/${actor}`)
+      .then(response => {
+        app.Movie.all = response.results.map(o => new app.Movie(o));
+        app.Movie.page = response.page;
+        app.Movie.totalPages = response.total_pages;
+        movieView.initIndexPage();
+      }).catch(console.error);
+  };
+
+  movieView.viewCredits = function(movieId) {
+    $.get(`${app.ENVIRONMENT.apiUrl}/credits/${movieId}`)
+      .then(response => {
+        console.log(response);
+        app.Movie.all = response.cast.map(o => new app.Movie(o));
+        app.Movie.all.map(o => o.media_type='person');
+        app.Movie.page = response.page;
+        app.Movie.totalPages = response.total_pages;
+        movieView.initTinyPeoplePage();
+      });
   };
 
   module.movieView = movieView;

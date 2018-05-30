@@ -6,15 +6,20 @@ var app = app || {};
 
   function User(userObject) {
     Object.keys(userObject).forEach(key => this[key] = userObject[key]);
+    if (this.preferences) {this.preferences = JSON.parse(this.preferences);}
   }
+
+  User.current;
+  User.dbuser;
+  User.test;
 
   //Function that adds the default filters if none present
   User.prototype.setDefaultPrefs = function() {
     this.preferences = JSON.stringify({
       maxrating: 4,
-      minratings: 100,
-      maxdate: new Date().toString(),
-      mindate: 'Mon Jan 01 1900 00:00:00 GMT-0700 (PDT)',
+      minratings: 25,
+      //maxdate: new Date().toString().slice(d.indexOf(' ')+1, 15),
+      mindate: 'Jan 01 1970',
       sortby: 'rating',
       favorites: []
     });
@@ -34,15 +39,14 @@ var app = app || {};
         id: this.id,
         username: this.username,
         password: this.password,
-        preferences: this.preferences,
+        preferences: JSON.stringify(this.preferences),
       }
-    }).then(() => console.log('did a thing'))
+    }).then(() => console.log('Updated database for',this.username))
       .catch(console.error);
   };
 
   //Function that adds a user to the database
   User.prototype.addUser = function() {
-    console.log(this);
     this.setDefaultPrefs();
     $.ajax({
       url: `${app.ENVIRONMENT.apiUrl}/users/new`,
@@ -54,6 +58,7 @@ var app = app || {};
       }
     }).then(() => {
       alert('User created');
+      app.toggleMenu();
       page('/');
     }).catch(console.error);
   };
@@ -64,6 +69,10 @@ var app = app || {};
       url: `${app.ENVIRONMENT.apiUrl}/users/remove/${this.id}`,
       method: 'DELETE'
     }).catch(console.error);
+  };
+
+  User.prototype.toHtml = function() {
+    return Handlebars.compile($('#user-pref-template').text())(this.preferences);
   };
 
   //Function that gets a user from the database
@@ -79,10 +88,6 @@ var app = app || {};
       .catch(console.error());
   };
 
-  User.current;
-  User.dbuser;
-  User.test;
-
   //Refactor verify so that it doesn't need arguments
   User.verify = function() {
     if (User.test.password === User.dbuser.password) {
@@ -92,24 +97,48 @@ var app = app || {};
         User.current.updateUser();
       }
       // Make sure that the filters are populated with the user preferences.
-      app.userView.toggleUserView();
+      app.toggleMenu();
       page('/');
+      app.userView.toggleUserView();
     } else alert('Incorrect password');
   };
 
-  module.User = User;
-})(app);
+  User.newUser = function() {
+    $('#new-user-form').on('submit', function(e){
+      e.preventDefault();
+      $('#new-user-form').off('submit');
+      let userObject = {
+        username: $('#new-username').val(),
+        password: $('#new-password').val()
+      };
 
-$('#new-user-form').on('submit', function(e){
-  e.preventDefault();
-  let userObject = {
-    username: $('#new-username').val(),
-    password: $('#new-password').val()
+      //Logic that checks if there is a user in the database with the same username.
+      app.User.getUser(userObject,
+        function(){alert('User already exists');},
+        function(){new app.User(userObject).addUser();}
+      );
+    });
   };
 
-  //Logic that checks if there is a user in the database with the same username.
-  app.User.getUser(userObject,
-    function(){alert('User already exists');},
-    function(){new app.User(userObject).addUser();}
-  );
-});
+  User.addToFavorites = (ctx, next) => {
+    // find index of movie with id = ctx.params.id
+    let favMovie = app.Movie.all.filter(m => m.id === parseInt(ctx.params.id));
+    console.log(favMovie);
+    User.current.preferences.favorites.push(favMovie[0]);
+    console.log('after push favs', User.current.preferences.favorites);
+    $(`#not-fav-${ctx.params.id}`).hide();
+    $(`#fav-${ctx.params.id}`).show();
+    User.current.updateUser(); 
+  }
+
+  User.removeFromFavorites = (ctx) => {
+    let notFavMovieIds = User.current.preferences.favorites.map(m => parseInt(m.id));
+    let idx = notFavMovieIds.indexOf(ctx.params.id);
+    User.current.preferences.favorites.splice(idx, 1);
+    $(`#fav-${ctx.params.id}`).hide();
+    $(`#not-fav-${ctx.params.id}`).show();
+    User.current.updateUser();
+  }
+
+  module.User = User;
+})(app);
