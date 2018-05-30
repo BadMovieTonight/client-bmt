@@ -17,17 +17,23 @@ page('/menu', ctx => {
 page('/signup', () => {
   app.toggleMenu();
   app.showOnly('#new-user');
+  app.User.newUser();
 });
 
 page('/login', () => {
   app.toggleMenu();
   app.showOnly('#login');
+  app.userView.userLogin();
 });
 
 page('/logout', () => {
   app.User.current = null;
   app.userView.toggleUserView();
   page('/');
+});
+
+page('/profile', () => {
+  app.toggleMenu();
 });
 
 page('/search', (ctx) => app.movieView.handleGeneralSearch(ctx));

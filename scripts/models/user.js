@@ -42,7 +42,6 @@ var app = app || {};
 
   //Function that adds a user to the database
   User.prototype.addUser = function() {
-    console.log(this);
     this.setDefaultPrefs();
     $.ajax({
       url: `${app.ENVIRONMENT.apiUrl}/users/new`,
@@ -54,6 +53,7 @@ var app = app || {};
       }
     }).then(() => {
       alert('User created');
+      app.toggleMenu();
       page('/');
     }).catch(console.error);
   };
@@ -92,24 +92,28 @@ var app = app || {};
         User.current.updateUser();
       }
       // Make sure that the filters are populated with the user preferences.
-      app.userView.toggleUserView();
+      app.toggleMenu();
       page('/');
+      app.userView.toggleUserView();
     } else alert('Incorrect password');
+  };
+
+  User.newUser = function() {
+    $('#new-user-form').on('submit', function(e){
+      e.preventDefault();
+      $('#new-user-form').off('submit');
+      let userObject = {
+        username: $('#new-username').val(),
+        password: $('#new-password').val()
+      };
+
+      //Logic that checks if there is a user in the database with the same username.
+      app.User.getUser(userObject,
+        function(){alert('User already exists');},
+        function(){new app.User(userObject).addUser();}
+      );
+    });
   };
 
   module.User = User;
 })(app);
-
-$('#new-user-form').on('submit', function(e){
-  e.preventDefault();
-  let userObject = {
-    username: $('#new-username').val(),
-    password: $('#new-password').val()
-  };
-
-  //Logic that checks if there is a user in the database with the same username.
-  app.User.getUser(userObject,
-    function(){alert('User already exists');},
-    function(){new app.User(userObject).addUser();}
-  );
-});
