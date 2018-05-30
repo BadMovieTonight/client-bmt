@@ -30,8 +30,18 @@
         <h3>{{name}}</h3>
         <p>Born: {{birthday}}</p>
         <p>Birthplace: {{place_of_birth}}</p>
-        <!-- <p>Popularity ranking: {{popularity}}</p> -->
+        <p>Popularity ranking: {{popularity}}</p>
         <p>{{biography}}</p>
+      </div>
+    </script>
+
+    <script id="about-us-template" type="text/x-handlebars-template">
+      <h1>About the Developers</h1>
+      <div class="movie-list-item developer-details">
+        <img src="{{img_path}}" />
+        <h3>{{name}}</h3>
+        <p>{{bio}}</p>
+        <p>{{worst_movie}}</p>
       </div>
     </script>
 
@@ -64,6 +74,8 @@
 
       <section id="new-user" class="container"></section>
 
+      <section id="about-us" class="container"></section>
+
       <section id="movie-advanced-search" class="container">
         <h2>Find Movies</h2>
         <form id="advanced-search-form">
@@ -89,34 +101,6 @@
         </form>
       </section>
 
-      <section id="about-us" class="container">
-        <h1>About the Developers</h1>
-        <section class="movie-list-item  dev-details">
-          <img src="/bio-imgs/paul.jpg" />
-          <h2>Paul Ritzman</h2>
-          <p>Paul has a background in Information Security and Computer Forensics. Seeking the opportunity to create tomorrow's technology, he opted to pursue development and continues to broaden his skills daily.</p>
-          <p></p>
-        </section>
-        <section class="movie-list-item  dev-details">
-          <img src="/bio-imgs/tracy.jpg" width="300px"/>
-          <h2>Tracy Williams</h2>
-          <p>Tracy Williams comes to Code Fellows from a long history of jobs both in and out of tech. Tracy graduated from the University of Washington in 1981 with a bachelor's in Computer Science with a focus on data structures. Since then he's worked as a software engineer, field applications engineer, and sales rep, and has filled various management roles up to VP Engineering &amp; Quality. When he's not coding, Tracy enjoys spending time with his wife, Kim, riding one of his two motorcycles, or hanging out at his cabin in the Gifford Pinchot National Forest.</p>
-          <p>favorite bad movie: Battlefield Earth</p>
-        </section>
-        <section class="movie-list-item  dev-details">
-          <img src="/bio-imgs/jenny.jpg" />
-          <h2>Jennifer Lawrence</h2>
-          <p>Hi there! My name is Jenny and I am currently working towards becoming a full-stack JavaScript developer. I have a background in non-profit/social work. I hope to be able to create dynamic and beautiful web pages for my clients, as well as volunteer my skills for local non-profits.</p>
-          <p>fav bad movie: Mac and Me</p>
-        </section>
-        <section class="movie-list-item  dev-details">
-          <img src="/bio-imgs/benjamin.jpg" />
-          <h2>Benjamin Taylor</h2>
-          <p>Hi, I’m Ben, and I am a JavaScript developer with prior experience in Python, Java, C#. I am currently planning on taking the C# 401 course at Code Fellows.</p>
-          <p>The worst movie I’ve ever seen is Life’s A Jungle: Africa’s Most Wanted.</p>
-        </section>
-      </section>
-
     </main>
     <footer>
 
@@ -129,6 +113,7 @@
     <script src="scripts/views/userView.js"></script>
     <script src="scripts/models/movie.js"></script>
     <script src="scripts/views/movieView.js"></script>
+    <script src="scripts/views/aboutView.js"></script>
     <script src="scripts/app.js"></script>
     <script src="scripts/controllers/routes.js"></script>
   </body>

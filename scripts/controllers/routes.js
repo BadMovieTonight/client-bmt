@@ -8,6 +8,7 @@ page('/', () => {
 
 page('/about', () => {
   app.showOnly('#about-us');
+  app.Developer.initAboutPage();
 });
 
 page('/client-bmt', () => page('/'));

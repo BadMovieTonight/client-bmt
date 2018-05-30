@@ -20,10 +20,10 @@ var app = app || {};
 
   new Developer('Jennifer Lawrence', 'Hi there! My name is Jenny and I am currently working towards becoming a full-stack JavaScript developer. I have a background in non-profit/social work. I hope to be able to create dynamic and beautiful web pages for my clients, as well as volunteer my skills for local non-profits.', 'Mac and Me', '/bio-imgs/jenny.jpg');
 
-  new Developer('Benjamin Taylor', 'Hi, I’m Ben, and I am a JavaScript developer with prior experience in Python, Java, C#. I am currently planning on taking the C# 401 course at Code Fellows.', 'Life’s A Jungle: Africa’s Most Wanted', '/bio-imgs/ben.jpg');
+  new Developer('Benjamin Taylor', 'Hi, I’m Ben, and I am a JavaScript developer with prior experience in Python, Java, C#. I am currently planning on taking the C# 401 course at Code Fellows.', 'Life’s A Jungle: Africa’s Most Wanted', '/bio-imgs/benjamin.jpg');
 
   Developer.prototype.toHtml = function() {
-    return Handlebars.compile($('#about-developer-template').text())(this);
+    return Handlebars.compile($('#about-us-template').text())(this);
   };
 
   Developer.initAboutPage = function() {
