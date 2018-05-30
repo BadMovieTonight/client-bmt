@@ -46,8 +46,14 @@ footer{
   margin-top: 1em;
   background-color: #eeeeee;
   padding: 0.5em;
+  position: relative;
 }
 
+.fav-star {
+  position: absolute;
+  top: 0.8em;
+  right: .5em;
+}
 .movie-img {
   float: left;
 }
