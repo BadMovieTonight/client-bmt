@@ -58,7 +58,7 @@ var app = app || {};
       }
     }).then(() => {
       alert('User created');
-      app.toggleMenu();
+      app.userView.toggleUserView();
       page('/');
     }).catch(console.error);
   };
