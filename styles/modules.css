@@ -91,7 +91,7 @@ main p{
 .developer-details {
   float: right;
   margin-top: 0;
-  max-width: 76%;
+  max-width: 70%;
   min-height: 160px;
   min-width: 300px;
 }
@@ -103,6 +103,7 @@ main p{
 .person-img {
   float: left;
   min-width: 100px;
+  max-width: 25%;
 }
 
 input#search {
@@ -156,3 +157,9 @@ li:hover a {
     padding: .7em 0 0 1em;
   }
 }
+
+/* @media only screen and (min-width:960px){
+  .developer-details div {
+    width: 70%;
+  }
+} */
