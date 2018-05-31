@@ -7,7 +7,6 @@ var app = app || {};
   const movieView = {};
 
   movieView.initIndexPage = function() {
-    // $('.fav-star').hide();
     let $movieList = $('#movie-list');
     $movieList.empty();
     app.Movie.getImages();
@@ -29,15 +28,10 @@ var app = app || {};
           $(`#fav-${m.id}`).show();
         }
       });
-
-      //   if app.Movie.all contains the favorite's move ID
-      //      make full star visible
-      //   otherwise make empty star visible
     }
   };
 
   movieView.initFavoritesPage = () => {
-    console.log('initFavoritesPage');
     // point Movie.all to current user's favorites list
     app.Movie.all = [];
     let favs = app.User.current.preferences.favorites;
@@ -51,7 +45,6 @@ var app = app || {};
   movieView.addPageNavFooter = function(){
     if (app.Movie.page){
       let randomSearch = $('#search').val() === '';
-      console.log(randomSearch);
       let pageView = `<p class="page-nav-footer">`;
       pageView += ` Page ${app.Movie.page} of ${app.Movie.totalPages} `;
       if (randomSearch) {
@@ -86,11 +79,8 @@ var app = app || {};
   };
 
   movieView.handleGeneralSearch = function(ctx) {
-    // console.log(ctx);
     let search = $('#search').val();
     let searchType = $('#search-type').val();
-    console.log('search string', search);
-    console.log('search drop down', searchType);
     if (searchType === 'person'){
       movieView.searchPeople(ctx, search);
     } else {
@@ -99,20 +89,16 @@ var app = app || {};
   };
 
   movieView.searchPeople = function (ctx, search){
-    console.log('search people', search);
     $.get(`${app.ENVIRONMENT.apiUrl}/bmt/person`,
       {searchFor: $('#search').val(),
         page: parseInt(ctx.params.page)
       })
       .then(response => {
-        console.log('search returned',response.results);
         app.Movie.all = response.results
           .map(o => new app.Movie(o));
         app.Movie.all.map(o => o.media_type='person');
         app.Movie.page = response.page;
         app.Movie.totalPages = response.total_pages;
-        console.log(app.Movie.all);
-        console.log('Page',response.page,'of',response.total_pages);
         movieView.initTinyPeoplePage();
       })
       .catch(err => console.log(err));
@@ -121,34 +107,27 @@ var app = app || {};
   movieView.getPersonDetail = function(ctx){
     $.get(`${app.ENVIRONMENT.apiUrl}/bmt/person/${ctx.params.id}`)
       .then(response => {
-        console.log('search returned',response.results);
         app.Movie.all = response.results
           .map(o => new app.Movie(o));
         app.Movie.all.map(o => o.media_type='person');
         app.Movie.page = response.page;
         app.Movie.totalPages = response.total_pages;
-        console.log(app.Movie.all);
-        console.log('Page',response.page,'of',response.total_pages);
         movieView.initIndexPage();
       })
       .catch(err => console.log(err));
   };
 
   movieView.searchMovies = function (ctx, search){
-    console.log('search movies', search);
     $.get(`${app.ENVIRONMENT.apiUrl}/bmt/movies`,
       {searchFor: $('#search').val(),
         page: parseInt(ctx.params.page)
       })
       .then(response => {
-        console.log('search returned',response.results);
         app.Movie.all = response.results
           .filter(o => o.vote_average < 5)
           .map(o => new app.Movie(o));
         app.Movie.page = response.page;
         app.Movie.totalPages = response.total_pages;
-        console.log(app.Movie.all);
-        console.log('Page',response.page,'of',response.total_pages);
         movieView.initIndexPage();
       })
       .catch(err => console.log(err));
@@ -167,7 +146,6 @@ var app = app || {};
   movieView.viewCredits = function(movieId) {
     $.get(`${app.ENVIRONMENT.apiUrl}/credits/${movieId}`)
       .then(response => {
-        console.log(response);
         app.Movie.all = response.cast.map(o => new app.Movie(o));
         app.Movie.all.map(o => o.media_type='person');
         app.Movie.page = response.page;
