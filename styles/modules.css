@@ -47,7 +47,7 @@ nav li {
 
 nav li a, .heading-group-h1 a {
   text-decoration: none;
-  color: grey;
+  color: rgb(186, 186, 186);
   font-family: 'Times New Roman', Times, serif;
 }
 
