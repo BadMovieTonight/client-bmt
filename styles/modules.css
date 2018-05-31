@@ -113,6 +113,10 @@ a[href="/logout"], a[href="/profile"] {
   color: red;
 }
 
+.fav-menu {
+  display: none;
+}
+
 @media only screen and (min-width:680px){
   nav li{
     float: left;
