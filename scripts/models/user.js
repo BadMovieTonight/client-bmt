@@ -104,7 +104,7 @@ var app = app || {};
       // Make sure that the filters are populated with the user preferences.
       page('/');
       app.userView.toggleUserView();
-    } else alert('Incorrect password');
+    } else alert('Unrecognized username or password.');
   };
 
   User.newUser = function() {
@@ -118,7 +118,7 @@ var app = app || {};
 
       //Logic that checks if there is a user in the database with the same username.
       app.User.getUser(userObject,
-        function(){alert('User already exists');},
+        function(){alert('That username is already taken.');},
         function(){new app.User(userObject).addUser();}
       );
     });

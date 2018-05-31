@@ -27,7 +27,7 @@ var app = app || {};
         username: $('#username').val(),
         password: $('#password').val(),
       };
-      app.User.getUser(user, app.User.verify, function(){alert('User does not exist');});
+      app.User.getUser(user, app.User.verify, function(){alert('Unrecognized username or password.');});
     });
   };
 
