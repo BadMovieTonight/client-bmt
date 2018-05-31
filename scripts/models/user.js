@@ -23,12 +23,7 @@ var app = app || {};
       sortby: 'rating',
       favorites: []
     });
-  };
-
-  //Function that updates the filters on form update
-  User.prototype.updatePrefs = function() {
-
-  };
+  };  
 
   //Function that updates the database
   User.prototype.updateUser = function(callback) {
@@ -42,10 +37,9 @@ var app = app || {};
         preferences: JSON.stringify(this.preferences),
       }
     }).then(() => {
-      console.log('Updated database for',this.username);
       if (callback) callback();
     })
-      .catch(console.error);
+    .catch(console.error);
   };
 
   //Function that adds a user to the database
@@ -133,9 +127,7 @@ var app = app || {};
   User.addToFavorites = (ctx) => {
     // find index of movie with id = ctx.params.id
     let favMovie = app.Movie.all.filter(m => m.id === parseInt(ctx.params.id));
-    console.log(favMovie);
-    User.current.preferences.favorites.push(favMovie[0]);
-    console.log('after push favs', User.current.preferences.favorites);
+    User.current.preferences.favorites.push(favMovie[0]);;
     $(`#not-fav-${ctx.params.id}`).hide();
     $(`#fav-${ctx.params.id}`).show();
     User.current.updateUser();
