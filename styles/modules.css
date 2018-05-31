@@ -128,6 +128,12 @@ li:hover a {
   color: black;
   text-align: center;
 }
+
+#search-type {
+  background: white;
+  color: black;
+}
+
 @media only screen and (min-width:720px){
 
   nav ul {
