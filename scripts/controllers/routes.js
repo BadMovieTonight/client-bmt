@@ -7,12 +7,12 @@ page('/', () => {
   app.showOnly('#movie-list');
   $('#search').val('');
   app.Movie.fetchAll(app.movieView.initIndexPage);
-  $(document).scrollTop( $("#header").offset().top );
+  app.userView.scrollToTop();
 });
 
 page('/client-bmt', () => page('/'));
 
-page('/menu', ctx => {
+page('/menu', () => {
   app.toggleMenu();
 });
 
@@ -30,6 +30,7 @@ page('/login', () => {
 
 page('/logout', () => {
   app.User.current = null;
+  $('.fav-menu').hide();
   app.userView.toggleUserView();
   console.log('page /logout',`${app.ENVIRONMENT.apiUrl}/logout`);
   $.get(`${app.ENVIRONMENT.apiUrl}/logout`);
@@ -47,14 +48,14 @@ page('/editPreferences', ()=> {
   app.userView.editPreferences();
 });
 
-page('/addToFavs/:id',(ctx) => {
-  console.log('adding id',ctx.params.id,'to favorites');
-  app.User.addToFavorites(ctx)
+page('/addToFavs/:id', (ctx) => {
+  console.log('adding id', ctx.params.id,'to favorites');
+  app.User.addToFavorites(ctx);
 });
 
-page('/removeFromFavs/:id',(ctx) => {
-  console.log('removing id',ctx.params.id,'from favorites');
-  app.User.removeFromFavorites(ctx)
+page('/removeFromFavs/:id', (ctx) => {
+  console.log('removing id', ctx.params.id,'from favorites');
+  app.User.removeFromFavorites(ctx);
 });
 
 page('/favorites', () => {
@@ -66,14 +67,16 @@ page('/favorites', () => {
 page('/search', (ctx) => app.movieView.handleGeneralSearch(ctx));
 
 page('/search/:page', (ctx) => {
-  $(document).scrollTop( $("#header").offset().top );
-  app.movieView.handleGeneralSearch(ctx)
+  app.userView.scrollToTop();
+  app.movieView.handleGeneralSearch(ctx);
 });
 
 page('/movies/:actor', (ctx) => app.movieView.viewBadFilmography(ctx.params.actor));
 
-page('/credits/:movieId', (ctx) => app.movieView.viewCredits(ctx.params.movieId));
-//console.log('credits for movie', ctx.params.movieId));
+page('/credits/:movieId', (ctx) => {
+  app.movieView.viewCredits(ctx.params.movieId);
+  app.userView.scrollToTop();
+});
 
 page('/bmt/person/:id', (ctx) => app.movieView.getPersonDetail(ctx));
 

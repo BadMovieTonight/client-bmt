@@ -60,9 +60,10 @@ var app = app || {};
         preferences: this.preferences
       }
     }).then(() => {
-      alert('User created');
-      app.toggleMenu();
-      page('/');
+      app.userView.userLogin();
+      $('#username').val(this.username);
+      $('#password').val(this.password);
+      $('#login-form').submit();
     }).catch(console.error);
   };
 
@@ -72,11 +73,13 @@ var app = app || {};
       url: `${app.ENVIRONMENT.apiUrl}/users/remove/${this.username}`,
       method: 'DELETE'
     })
-    .then(() => {
-      console.log(this.username,'deleted');
-      app.User.current = null;
-      page('/')})
-    .catch(console.error);
+      .then(() => {
+        console.log(this.username,'deleted');
+        app.User.current = null;
+        app.userView.toggleUserView();
+        page('/');
+      })
+      .catch(console.error);
   };
 
   User.prototype.toHtml = function() {
@@ -128,7 +131,7 @@ var app = app || {};
     });
   };
 
-  User.addToFavorites = (ctx, next) => {
+  User.addToFavorites = (ctx) => {
     // find index of movie with id = ctx.params.id
     let favMovie = app.Movie.all.filter(m => m.id === parseInt(ctx.params.id));
     console.log(favMovie);
@@ -136,8 +139,8 @@ var app = app || {};
     console.log('after push favs', User.current.preferences.favorites);
     $(`#not-fav-${ctx.params.id}`).hide();
     $(`#fav-${ctx.params.id}`).show();
-    User.current.updateUser(); 
-  }
+    User.current.updateUser();
+  };
 
   User.removeFromFavorites = (ctx) => {
     let notFavMovieIds = User.current.preferences.favorites.map(m => parseInt(m.id));
@@ -146,7 +149,7 @@ var app = app || {};
     $(`#fav-${ctx.params.id}`).hide();
     $(`#not-fav-${ctx.params.id}`).show();
     User.current.updateUser();
-  }
+  };
 
   module.User = User;
 })(app);

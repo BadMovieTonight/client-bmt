@@ -14,6 +14,11 @@ var app = app || {};
     $('a[href="/profile"]').toggle();
   };
 
+  // Function that scrolls user to top of page (mainly used during page navigation).
+  userView.scrollToTop = function() {
+    $(document).scrollTop($('#header').offset().top);
+  };
+
   userView.userLogin = function() {
     $('#login-form').on('submit', function(e) {
       e.preventDefault();

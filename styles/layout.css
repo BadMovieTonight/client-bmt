@@ -76,7 +76,6 @@ footer{
 .movie-info, .movie-tiny-person-list {
   margin-top: 1em;
   text-align: center;
-  box-shadow: 0 8px 6px -6px black;
 }
 
 .movie-tiny-person-list img {

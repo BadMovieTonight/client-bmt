@@ -17,7 +17,7 @@ var app = app || {};
   };
 
   movieView.initFavStar = function() {
-    if (app.User.current) {  // then we have a logged in user
+    if (app.User.current) { // then we have a logged in user
       $('.fav-menu').show(); // show the favorites menu item
       $('.not-fav').show(); // show all the empty (not fav) stars
       // map user's favorite movie id's to a new array
@@ -29,17 +29,17 @@ var app = app || {};
           $(`#fav-${m.id}`).show();
         }
       });
-    
+
       //   if app.Movie.all contains the favorite's move ID
       //      make full star visible
       //   otherwise make empty star visible
     }
-  }
+  };
 
   movieView.initFavoritesPage = () => {
     console.log('initFavoritesPage');
     // point Movie.all to current user's favorites list
-    app.Movie.all = []
+    app.Movie.all = [];
     let favs = app.User.current.preferences.favorites;
     favs.forEach(fav => app.Movie.all.push(new app.Movie(fav)));
     let $movieList = $('#movie-list');
@@ -115,7 +115,7 @@ var app = app || {};
         console.log('Page',response.page,'of',response.total_pages);
         movieView.initTinyPeoplePage();
       })
-      .catch(err => console.log('that didn\'t work'));
+      .catch(err => console.log(err));
   };
 
   movieView.getPersonDetail = function(ctx){
@@ -131,7 +131,7 @@ var app = app || {};
         console.log('Page',response.page,'of',response.total_pages);
         movieView.initIndexPage();
       })
-      .catch(err => console.log('that didn\'t work'));
+      .catch(err => console.log(err));
   };
 
   movieView.searchMovies = function (ctx, search){
