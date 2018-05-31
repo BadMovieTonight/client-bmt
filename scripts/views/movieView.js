@@ -10,9 +10,17 @@ var app = app || {};
     let $movieList = $('#movie-list');
     $movieList.empty();
     app.Movie.getImages();
-    app.Movie.all.forEach(elem => {$movieList.append(elem.toHtml());});
-    app.movieView.initFavStar();
-    movieView.addPageNavFooter();
+    if (app.Movie.all.length !== 0) {  // movie or actor sucks
+      app.Movie.all.forEach(elem => {$movieList.append(elem.toHtml());});
+      app.movieView.initFavStar();
+      movieView.addPageNavFooter();
+    } else { // they don't suck so much
+      app.showOnly('#doesnt-suck');
+      $('#sucks-less').text($('#search').val());
+    }
+    // uncomment line below to demo fuzzy search. Only works briefly
+    // due to tmdb.org's transaction limits.
+    // $('#search').on('input', ()=>page('/search/1'));
   };
 
   movieView.initFavStar = function() {

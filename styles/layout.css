@@ -52,7 +52,7 @@ footer{
   text-align: center;
 }
 
-.movie-list-item, .movie-tiny-person-list, .login-form, .page-nav-footer, #user-preferences, .edit-preferences {
+.movie-list-item, .movie-tiny-person-list, .login-form, .page-nav-footer, #user-preferences, .edit-preferences, #doesnt-suck {
   margin-top: 1em;
   background-color: #d2d1d1;
   padding: 0.5em;
