@@ -12,7 +12,7 @@ page('/', () => {
 
 page('/client-bmt', () => page('/'));
 
-page('/menu', ctx => {
+page('/menu', () => {
   app.toggleMenu();
 });
 
