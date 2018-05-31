@@ -8,13 +8,13 @@
 **Tracy Williams** - [TCW417](https://github.com/TCW417)  
 
 ## Getting Started
-**Step 1:** do something
+**Step 1:** Go to [BadMovieTonight](https://badmovietonight.github.io/client-bmt)
 
 ## Architecture
 **Languages Used**: JavaScript, HTML, CSS, SQL  
 **Libraries Used**: JQuery, Handlebars  
 **Frameworks Used**: Express  
-**APIs Used**: 
+**APIs Used**: TheMovieDb.org
 
 CSS is organized using SMACSS guidelines.  
 Written with Visual Studio Code.  
@@ -26,6 +26,7 @@ Package management by NPM.
 05-DD-2018 HH:MMxm - did a thing  
 
 ## Credits and Collaborations
+**The Movie Database, [themoviedb.org](https://www.themoviedb.org/documentation/api)
 **Anish Athalye** - [anishathalye](https://github.com/anishathalye/?normalize) for the normalize.css v3.0.2 | MIT License | [normalize](git.io/normalize)  
 **Icomoon** - [Icomoon](https://icomoon.io/)  
 **JQuery** - [JQuery](https://jquery.com/)  

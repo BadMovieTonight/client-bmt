@@ -99,7 +99,7 @@ var app = app || {};
 
   movieView.searchPeople = function (ctx, search){
     $.get(`${app.ENVIRONMENT.apiUrl}/bmt/person`,
-      {searchFor: $('#search').val(),
+      {searchFor: search,
         page: parseInt(ctx.params.page)
       })
       .then(response => {
@@ -128,7 +128,7 @@ var app = app || {};
 
   movieView.searchMovies = function (ctx, search){
     $.get(`${app.ENVIRONMENT.apiUrl}/bmt/movies`,
-      {searchFor: $('#search').val(),
+      {searchFor: search,
         page: parseInt(ctx.params.page)
       })
       .then(response => {
