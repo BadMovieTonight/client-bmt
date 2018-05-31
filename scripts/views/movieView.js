@@ -10,7 +10,8 @@ var app = app || {};
     let $movieList = $('#movie-list');
     $movieList.empty();
     app.Movie.getImages();
-    if (app.Movie.all.length !== 0) { // movie or actor sucks
+    if (app.Movie.all.length !== 0) {  // movie or actor sucks
+      app.showOnly('#movie-list');
       app.Movie.all.forEach(elem => {$movieList.append(elem.toHtml());});
       app.movieView.initFavStar();
       movieView.addPageNavFooter();
