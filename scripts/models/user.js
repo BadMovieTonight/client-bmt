@@ -42,7 +42,7 @@ var app = app || {};
         preferences: JSON.stringify(this.preferences),
       }
     }).then(() => {
-      console.log('Updated database for',this.username)
+      console.log('Updated database for',this.username);
       if (callback) callback();
     })
       .catch(console.error);
@@ -108,7 +108,6 @@ var app = app || {};
         User.current.updateUser();
       }
       // Make sure that the filters are populated with the user preferences.
-      app.toggleMenu();
       page('/');
       app.userView.toggleUserView();
     } else alert('Incorrect password');
