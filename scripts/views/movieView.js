@@ -7,7 +7,6 @@ var app = app || {};
   const movieView = {};
 
   movieView.initIndexPage = function() {
-    // $('.fav-star').hide();
     let $movieList = $('#movie-list');
     $movieList.empty();
     app.Movie.getImages();
@@ -17,9 +16,9 @@ var app = app || {};
   };
 
   movieView.initFavStar = function() {
-    if (app.User.current) { // then we have a logged in user
-      $('.fav-menu').show(); // show the favorites menu item
-      $('.not-fav').show(); // show all the empty (not fav) stars
+    if (app.User.current) {
+      $('.fav-menu').show();
+      $('.not-fav').show();
       // map user's favorite movie id's to a new array
       let userMovieIds = app.User.current.preferences.favorites.map(m => parseInt(m.id));
       // loop through displayed movies and compare id with userMovieIds
@@ -29,10 +28,6 @@ var app = app || {};
           $(`#fav-${m.id}`).show();
         }
       });
-
-      //   if app.Movie.all contains the favorite's move ID
-      //      make full star visible
-      //   otherwise make empty star visible
     }
   };
 
@@ -86,7 +81,6 @@ var app = app || {};
   };
 
   movieView.handleGeneralSearch = function(ctx) {
-    // console.log(ctx);
     let search = $('#search').val();
     let searchType = $('#search-type').val();
     console.log('search string', search);

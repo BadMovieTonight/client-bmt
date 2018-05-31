@@ -25,11 +25,6 @@ var app = app || {};
     });
   };
 
-  //Function that updates the filters on form update
-  User.prototype.updatePrefs = function() {
-
-  };
-
   //Function that updates the database
   User.prototype.updateUser = function(callback) {
     $.ajax({
