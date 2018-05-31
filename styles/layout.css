@@ -119,3 +119,14 @@ h3 {
 .save-edits-button {
   margin-right: 170px;
 }
+
+@media only screen and (max-width:640px){
+  .fav-star {
+    top: 0.2em;
+    right: .3em;
+  }
+
+  h3 {
+    margin-top: 1.7em;
+  }
+}
