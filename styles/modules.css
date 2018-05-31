@@ -100,6 +100,11 @@ main p{
   margin: .5em auto;
 }
 
+.developer-details a {
+  color: black;
+  text-decoration: none;
+}
+
 .person-img {
   float: left;
   min-width: 100px;
