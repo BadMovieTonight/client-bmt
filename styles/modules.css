@@ -47,7 +47,7 @@ nav li {
 
 nav li a, .heading-group-h1 a {
   text-decoration: none;
-  color: grey;
+  color: rgb(186, 186, 186);
   font-family: 'Times New Roman', Times, serif;
 }
 
@@ -89,12 +89,26 @@ main p{
 }
 
 .developer-details {
+  float: right;
+  margin-top: 0;
+  max-width: 70%;
   min-height: 160px;
+  min-width: 300px;
+}
+
+.developer-details h3 {
+  margin: .5em auto;
+}
+
+.developer-details a {
+  color: black;
+  text-decoration: none;
 }
 
 .person-img {
   float: left;
-  width: 200px;
+  min-width: 100px;
+  max-width: 25%;
 }
 
 input#search {
@@ -124,6 +138,16 @@ li:hover a {
   color: #FFF;
 }
 
+#doesnt-suck h1, #doesnt-suck h3 {
+  color: black;
+  text-align: center;
+}
+
+#search-type {
+  background: white;
+  color: black;
+}
+
 @media only screen and (min-width:720px){
 
   nav ul {
@@ -138,3 +162,9 @@ li:hover a {
     padding: .7em 0 0 1em;
   }
 }
+
+/* @media only screen and (min-width:960px){
+  .developer-details div {
+    width: 70%;
+  }
+} */

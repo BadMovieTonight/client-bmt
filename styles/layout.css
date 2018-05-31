@@ -52,9 +52,9 @@ footer{
   text-align: center;
 }
 
-.movie-list-item, .movie-tiny-person-list, .login-form, .page-nav-footer, #user-preferences, .edit-preferences {
+.movie-list-item, .movie-tiny-person-list, .login-form, .page-nav-footer, #user-preferences, .edit-preferences, #doesnt-suck {
   margin-top: 1em;
-  background-color: #eeeeee;
+  background-color: #d2d1d1;
   padding: 0.5em;
   box-shadow: 8px 8px 6px -6px black;
   position: relative;
@@ -89,7 +89,7 @@ h3 {
 
 
 .login-form div, .edit-preferences div {
-  border-bottom: 1px solid #efefef;
+  /* border-bottom: 1px solid #efefef; */
   margin: 10px;
   padding-bottom: 20px;
   width: 440px;
@@ -97,6 +97,7 @@ h3 {
 }
 .edit-preferences div {
   width: 640px;
+  /* border-bottom: none; */
 }
 .login-title, .edit-prefs-title {
   float: left;
@@ -117,4 +118,19 @@ h3 {
 }
 .save-edits-button {
   margin-right: 170px;
+}
+
+@media only screen and (max-width:640px){
+  .fav-star {
+    top: 0.2em;
+    right: .3em;
+  }
+
+  h3 {
+    margin-top: 1.7em;
+  }
+}
+
+@media only screen and (min-width:960px){
+  
 }

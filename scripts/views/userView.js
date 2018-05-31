@@ -27,7 +27,7 @@ var app = app || {};
         username: $('#username').val(),
         password: $('#password').val(),
       };
-      app.User.getUser(user, app.User.verify, function(){alert('User does not exist');});
+      app.User.getUser(user, app.User.verify, function(){alert('Unrecognized username or password.');});
     });
   };
 
@@ -38,7 +38,6 @@ var app = app || {};
   };
 
   userView.editPreferences = function() {
-    console.log('/editPreferences');
     app.showOnly('#edit-user-preferences');
     let uPrefs = app.User.current.preferences;
     $('#max-rating').val(uPrefs.maxrating);
@@ -46,7 +45,6 @@ var app = app || {};
     $('#date-after').val(uPrefs.mindate);
     $('#edit-preferences-form').on('submit', (e) => {
       e.preventDefault();
-      console.log('form submitted');
       $('#edit-preferences-form').off('submit');
       uPrefs.maxrating = $('#max-rating').val();
       uPrefs.minratings = $('#min-ratings').val();
