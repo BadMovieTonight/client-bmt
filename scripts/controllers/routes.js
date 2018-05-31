@@ -30,7 +30,10 @@ page('/login', () => {
 
 page('/logout', () => {
   app.User.current = null;
+  $('.fav-menu').hide();
   app.userView.toggleUserView();
+  console.log('page /logout',`${app.ENVIRONMENT.apiUrl}/logout`);
+  $.get(`${app.ENVIRONMENT.apiUrl}/logout`);
   page('/');
 });
 

@@ -31,7 +31,7 @@ var app = app || {};
   };
 
   //Function that updates the database
-  User.prototype.updateUser = function() {
+  User.prototype.updateUser = function(callback) {
     $.ajax({
       url: `${app.ENVIRONMENT.apiUrl}/users/update`,
       method: 'PUT',
@@ -41,7 +41,10 @@ var app = app || {};
         password: this.password,
         preferences: JSON.stringify(this.preferences),
       }
-    }).then(() => console.log('Updated database for',this.username))
+    }).then(() => {
+      console.log('Updated database for',this.username)
+      if (callback) callback();
+    })
       .catch(console.error);
   };
 
