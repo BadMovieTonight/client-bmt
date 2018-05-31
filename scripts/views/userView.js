@@ -46,8 +46,7 @@ var app = app || {};
       uPrefs.maxrating = $('#max-rating').val();
       uPrefs.minratings = $('#min-ratings').val();
       uPrefs.mindate = $('#date-after').val();
-      app.User.current.updateUser();
-      page('/');
+      app.User.current.updateUser(() => page('/'));
     });
   };
 
