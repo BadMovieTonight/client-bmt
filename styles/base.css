@@ -1,7 +1,7 @@
 main, .heading-group-h1 {
   margin: auto;
   width: 90vw;
-  min-width: 480px;
+  min-width: 300px;
   max-width: 960px;
 }
 
