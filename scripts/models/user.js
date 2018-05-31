@@ -66,9 +66,14 @@ var app = app || {};
   //Function that removes a user from the database
   User.prototype.removeUser = function() {
     $.ajax({
-      url: `${app.ENVIRONMENT.apiUrl}/users/remove/${this.id}`,
+      url: `${app.ENVIRONMENT.apiUrl}/users/remove/${this.username}`,
       method: 'DELETE'
-    }).catch(console.error);
+    })
+    .then(() => {
+      console.log(this.username,'deleted');
+      app.User.current = null;
+      page('/')})
+    .catch(console.error);
   };
 
   User.prototype.toHtml = function() {
