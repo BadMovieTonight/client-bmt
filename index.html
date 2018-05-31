@@ -53,9 +53,10 @@
         <ul>
           <li>Maximum overall rating: {{maxrating}}</li>
           <li>Minimum number of votes: {{minratings}}</li>
-          <li>Movies are sorted by: {{sortby}}</li>
+          <!-- <li>Movies are sorted by: {{sortby}}</li> -->
           <li>Showing movies released after: {{mindate}}</li>
         </ul>
+        <a href="/editPreferences" class="icon-pencil2"> Edit preferences</a>
       </div>
     </script>
 
@@ -97,7 +98,7 @@
           </li>
           <li class="tab" data-content="signup-profile">
             <a href="/signup" class="icon-pencil2"> New User</a>
-            <a href="/profile" class="icon-user-tie"> My Profile</a>
+            <a href="/profile" class="icon-user-tie"> Settings</a>
           </li>
           <li class="tab fav-menu" data-content="favorites"><a href="/favorites" class="icon-star-full"> Favs</a></li>
           <li class="tab" data-content="about"><a href="/about" class="icon-address-book"> About</a></li>
@@ -112,7 +113,7 @@
         <h1>About the Developers</h1>
       </section>
 
-      <section id="movie-advanced-search" class="container">
+      <!-- <section id="movie-advanced-search" class="container">
         <h2>Find Movies</h2>
         <form id="advanced-search-form">
           <input type="number" id="max-rating" placeholder="Max Rating">
@@ -127,7 +128,7 @@
             <option value="popularity">Most Popular</option>
           </select>
         </form>
-      </section>
+      </section> -->
 
       <section id="login" class="container">
         <form id="login-form" class="login-form">
@@ -145,14 +146,6 @@
         </form>
       </section>
 
-      <!-- <section id="new-user" class="container">
-          <form id="new-user-form">
-            <div></div>
-            <input type="text" id="new-username" placeholder="Username">
-            <input type="password" id="new-password" placeholder="Password">
-            <button type="submit">Create Account</button>
-          </form>
-        </section> -->
           <section id="new-user" class="container">
             <form id="new-user-form" class="login-form">
               <div>
@@ -168,7 +161,31 @@
               </div>
             </form>
           </section>
-      
+
+          <section id="edit-user-preferences" class="container">
+              <form id="edit-preferences-form" class="edit-preferences">
+                <div>
+                  <label for="max-rating" class="edit-prefs-title">Maximum movie rating: </label>
+                  <input type="number" id="max-rating">
+                </div>
+                <div>
+                  <label for="min-ratings" class="edit-prefs-title">Minimum number of rating votes: </label>
+                  <input type="number" id="min-ratings">
+                </div>
+                <!-- <div>
+                  <label for="sorted-by" class="edit-prefs-title">Sort movies by (when sort available): </label>
+                  <input type="text" id="sorted-by">
+                </div> -->
+                <div>
+                  <label for="date-after" class="edit-prefs-title">Find movies newer than: </label>
+                  <input type="date" id="date-after">
+                </div>
+                <div id="save-edits-button">
+                  <button type="submit" class="save-edits-button">Save Preferences</button>
+                </div>
+              </form>
+            </section>
+            
       <section id="user-profile" class="container"></section>
 
     </main>

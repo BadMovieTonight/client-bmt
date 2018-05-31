@@ -38,6 +38,11 @@ page('/profile', () => {
   app.userView.initProfilePage();
 });
 
+page('/editPreferences', ()=> {
+  app.hideMenu();
+  app.userView.editPreferences();
+});
+
 page('/addToFavs/:id',(ctx) => {
   console.log('adding id',ctx.params.id,'to favorites');
   app.User.addToFavorites(ctx)

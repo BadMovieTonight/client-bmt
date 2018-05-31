@@ -32,5 +32,24 @@ var app = app || {};
     $userProfile.append(app.User.current.toHtml());
   };
 
+  userView.editPreferences = function() {
+    console.log('/editPreferences');
+    app.showOnly('#edit-user-preferences');
+    let uPrefs = app.User.current.preferences;
+    $('#max-rating').val(uPrefs.maxrating);
+    $('#min-ratings').val(uPrefs.minratings);
+    $('#date-after').val(uPrefs.mindate);
+    $('#edit-preferences-form').on('submit', (e) => {
+      e.preventDefault();
+      console.log('form submitted');
+      $('#edit-preferences-form').off('submit');
+      uPrefs.maxrating = $('#max-rating').val();
+      uPrefs.minratings = $('#min-ratings').val();
+      uPrefs.mindate = $('#date-after').val();
+      app.User.current.updateUser();
+      page('/');
+    });
+  };
+
   module.userView = userView;
 })(app);
