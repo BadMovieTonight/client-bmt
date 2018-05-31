@@ -59,6 +59,7 @@ page('/removeFromFavs/:id',(ctx) => {
 
 page('/favorites', () => {
   app.hideMenu();
+  app.showOnly('#movie-list');
   app.movieView.initFavoritesPage();
 });
 
