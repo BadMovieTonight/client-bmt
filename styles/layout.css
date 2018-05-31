@@ -54,7 +54,7 @@ footer{
 
 .movie-list-item, .movie-tiny-person-list, .login-form, .page-nav-footer, #user-preferences, .edit-preferences {
   margin-top: 1em;
-  background-color: #eeeeee;
+  background-color: #d2d1d1;
   padding: 0.5em;
   box-shadow: 8px 8px 6px -6px black;
   position: relative;
