@@ -47,20 +47,26 @@ var app = app || {};
     app.Movie.all.forEach(elem => {$movieList.append(elem.toHtml());});
     app.movieView.initFavStar();
   };
-  
+
   movieView.addPageNavFooter = function(){
     if (app.Movie.page){
+      let randomSearch = $('#search').val() === '';
+      console.log(randomSearch);
       let pageView = `<p class="page-nav-footer">`;
       pageView += ` Page ${app.Movie.page} of ${app.Movie.totalPages} `;
-      if (app.Movie.page > 1) {
-        pageView += `<a href= "/search/${app.Movie.page - 1}">Prev ⬅️</a>`;
+      if (randomSearch) {
+        pageView += `<a href="/">Next random page</a>`;
       } else {
-        pageView += `Prev ⬅️`;
-      }
-      if (app.Movie.page < app.Movie.totalPages) {
-        pageView += ` <a href= "/search/${app.Movie.page + 1}">➡️ Next</a>`;
-      } else {
-        pageView += ` ➡️ Next`;
+        if (app.Movie.page > 1) {
+          pageView += `<a href="/search/{app.Movie.page - 1}">Prev <span class="icon-arrow-left"</span></a>`;
+        } else {
+          pageView += `Prev <span class="icon-arrow-left"></span>`;
+        }
+        if (app.Movie.page < app.Movie.totalPages) {
+          pageView += ` <a href="/search/${app.Movie.page + 1}"><span class="icon-arrow-right"></span> Next</a>`;
+        } else {
+          pageView += ` <span class="icon-arrow-right"></span> Next`;
+        }
       }
       pageView += `<p>`;
 

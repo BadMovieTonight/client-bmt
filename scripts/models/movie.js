@@ -39,9 +39,9 @@ var app = app || {};
     let randPage = Math.floor(Math.random() * 50) + 1;
     $.get(`${app.ENVIRONMENT.apiUrl}/homepage/${randPage}`)
       .then(response => {
+        Movie.page = response.page;
+        Movie.totalPages = response.total_pages;    
         Movie.loadAll(response.results);
-        // app.Movie.page = response.page;
-        // app.Movie.totalPages = response.total_pages;
         callback();
       })
       .catch(err => console.log(err));
