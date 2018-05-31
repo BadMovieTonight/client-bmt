@@ -10,7 +10,7 @@ var app = app || {};
     let $movieList = $('#movie-list');
     $movieList.empty();
     app.Movie.getImages();
-    if (app.Movie.all.length !== 0) {  // movie or actor sucks
+    if (app.Movie.all.length !== 0) { // movie or actor sucks
       app.Movie.all.forEach(elem => {$movieList.append(elem.toHtml());});
       app.movieView.initFavStar();
       movieView.addPageNavFooter();
@@ -98,7 +98,7 @@ var app = app || {};
 
   movieView.searchPeople = function (ctx, search){
     $.get(`${app.ENVIRONMENT.apiUrl}/bmt/person`,
-      {searchFor: $('#search').val(),
+      {searchFor: search,
         page: parseInt(ctx.params.page)
       })
       .then(response => {
@@ -127,7 +127,7 @@ var app = app || {};
 
   movieView.searchMovies = function (ctx, search){
     $.get(`${app.ENVIRONMENT.apiUrl}/bmt/movies`,
-      {searchFor: $('#search').val(),
+      {searchFor: search,
         page: parseInt(ctx.params.page)
       })
       .then(response => {
