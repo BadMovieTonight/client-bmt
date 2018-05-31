@@ -57,9 +57,10 @@ var app = app || {};
         preferences: this.preferences
       }
     }).then(() => {
-      alert('User created');
-      app.userView.toggleUserView();
-      page('/');
+      app.userView.userLogin();
+      $('#username').val(this.username);
+      $('#password').val(this.password);
+      $('#login-form').submit();
     }).catch(console.error);
   };
 
