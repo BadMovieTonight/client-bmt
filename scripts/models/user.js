@@ -69,11 +69,11 @@ var app = app || {};
       url: `${app.ENVIRONMENT.apiUrl}/users/remove/${this.username}`,
       method: 'DELETE'
     })
-    .then(() => {
-      console.log(this.username,'deleted');
-      app.User.current = null;
-      page('/')})
-    .catch(console.error);
+      .then(() => {
+        console.log(this.username,'deleted');
+        app.User.current = null;
+        page('/');})
+      .catch(console.error);
   };
 
   User.prototype.toHtml = function() {
@@ -133,8 +133,8 @@ var app = app || {};
     console.log('after push favs', User.current.preferences.favorites);
     $(`#not-fav-${ctx.params.id}`).hide();
     $(`#fav-${ctx.params.id}`).show();
-    User.current.updateUser(); 
-  }
+    User.current.updateUser();
+  };
 
   User.removeFromFavorites = (ctx) => {
     let notFavMovieIds = User.current.preferences.favorites.map(m => parseInt(m.id));
@@ -143,7 +143,7 @@ var app = app || {};
     $(`#fav-${ctx.params.id}`).hide();
     $(`#not-fav-${ctx.params.id}`).show();
     User.current.updateUser();
-  }
+  };
 
   module.User = User;
 })(app);
