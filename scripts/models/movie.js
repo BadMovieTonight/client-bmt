@@ -40,7 +40,7 @@ var app = app || {};
     $.get(`${app.ENVIRONMENT.apiUrl}/homepage/${randPage}`)
       .then(response => {
         Movie.page = response.page;
-        Movie.totalPages = response.total_pages;    
+        Movie.totalPages = response.total_pages;
         Movie.loadAll(response.results);
         callback();
       })
