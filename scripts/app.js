@@ -42,5 +42,5 @@ var app = app || {};
     let d = new Date();
     return `${d.getFullYear()}-${d.getMonth()}-${d.getDay()}`;
   };
-  
+
 })(app);

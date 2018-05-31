@@ -24,9 +24,9 @@ var app = app || {};
   };
 
   movieView.initFavStar = function() {
-    if (app.User.current) { // then we have a logged in user
-      $('.fav-menu').show(); // show the favorites menu item
-      $('.not-fav').show(); // show all the empty (not fav) stars
+    if (app.User.current) {
+      $('.fav-menu').show();
+      $('.not-fav').show();
       // map user's favorite movie id's to a new array
       let userMovieIds = app.User.current.preferences.favorites.map(m => parseInt(m.id));
       // loop through displayed movies and compare id with userMovieIds

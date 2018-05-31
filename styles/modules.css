@@ -89,12 +89,20 @@ main p{
 }
 
 .developer-details {
+  float: right;
+  margin-top: 0;
+  max-width: 76%;
   min-height: 160px;
+  min-width: 300px;
+}
+
+.developer-details h3 {
+  margin: .5em auto;
 }
 
 .person-img {
   float: left;
-  width: 200px;
+  min-width: 100px;
 }
 
 input#search {
