@@ -29,6 +29,7 @@ page('/login', () => {
 });
 
 page('/logout', () => {
+  app.hideMenu();
   app.User.current = null;
   $('.fav-menu').hide();
   app.userView.toggleUserView();
@@ -49,11 +50,13 @@ page('/editPreferences', ()=> {
 });
 
 page('/addToFavs/:id', (ctx) => {
+  app.hideMenu();
   console.log('adding id', ctx.params.id,'to favorites');
   app.User.addToFavorites(ctx);
 });
 
 page('/removeFromFavs/:id', (ctx) => {
+  app.hideMenu();
   console.log('removing id', ctx.params.id,'from favorites');
   app.User.removeFromFavorites(ctx);
 });
@@ -63,23 +66,35 @@ page('/favorites', () => {
   app.movieView.initFavoritesPage();
 });
 
-page('/search', (ctx) => app.movieView.handleGeneralSearch(ctx));
+page('/search', (ctx) => {
+  app.hideMenu();
+  app.movieView.handleGeneralSearch(ctx);
+});
 
 page('/search/:page', (ctx) => {
+  app.hideMenu();
   app.userView.scrollToTop();
   app.movieView.handleGeneralSearch(ctx);
 });
 
-page('/movies/:actor', (ctx) => app.movieView.viewBadFilmography(ctx.params.actor));
+page('/movies/:actor', (ctx) => {
+  app.hideMenu();
+  app.movieView.viewBadFilmography(ctx.params.actor);
+});
 
 page('/credits/:movieId', (ctx) => {
+  app.hideMenu();
   app.movieView.viewCredits(ctx.params.movieId);
   app.userView.scrollToTop();
 });
 
-page('/bmt/person/:id', (ctx) => app.movieView.getPersonDetail(ctx));
+page('/bmt/person/:id', (ctx) => {
+  app.hideMenu();
+  app.movieView.getPersonDetail(ctx);
+});
 
 page('/about', () => {
+  app.hideMenu();
   app.showOnly('#about-us');
   app.Developer.initAboutPage();
 });

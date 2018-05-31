@@ -27,7 +27,6 @@ var app = app || {};
   };
 
   Developer.initAboutPage = function() {
-    app.toggleMenu();
     let $aboutUs = $('#about-us');
     $aboutUs.empty();
 
