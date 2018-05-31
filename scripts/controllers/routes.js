@@ -3,7 +3,7 @@
 page('/', () => {
   delete app.Movie.page;
   delete app.Movie.totalPages;
-  app.toggleMenu();
+  app.hideMenu();
   app.showOnly('#movie-list');
   app.Movie.fetchAll(app.movieView.initIndexPage);
 });
@@ -15,13 +15,13 @@ page('/menu', ctx => {
 });
 
 page('/signup', () => {
-  app.toggleMenu();
+  app.hideMenu();
   app.showOnly('#new-user');
   app.User.newUser();
 });
 
 page('/login', () => {
-  app.toggleMenu();
+  app.hideMenu();
   app.showOnly('#login');
   app.userView.userLogin();
 });
@@ -33,9 +33,14 @@ page('/logout', () => {
 });
 
 page('/profile', () => {
-  app.toggleMenu();
+  app.hideMenu();
   app.showOnly('#user-profile');
   app.userView.initProfilePage();
+});
+
+page('/editPreferences', ()=> {
+  app.hideMenu();
+  app.userView.editPreferences();
 });
 
 page('/addToFavs/:id',(ctx) => {
@@ -46,6 +51,11 @@ page('/addToFavs/:id',(ctx) => {
 page('/removeFromFavs/:id',(ctx) => {
   console.log('removing id',ctx.params.id,'from favorites');
   app.User.removeFromFavorites(ctx)
+});
+
+page('/favorites', () => {
+  app.hideMenu();
+  app.movieView.initFavoritesPage();
 });
 
 page('/search', (ctx) => app.movieView.handleGeneralSearch(ctx));
