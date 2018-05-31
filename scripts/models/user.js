@@ -72,6 +72,7 @@ var app = app || {};
       .then(() => {
         console.log(this.username,'deleted');
         app.User.current = null;
+        app.userView.toggleUserView();
         page('/');})
       .catch(console.error);
   };
