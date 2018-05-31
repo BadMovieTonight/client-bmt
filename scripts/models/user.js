@@ -73,7 +73,8 @@ var app = app || {};
         console.log(this.username,'deleted');
         app.User.current = null;
         app.userView.toggleUserView();
-        page('/');})
+        page('/');
+      })
       .catch(console.error);
   };
 
@@ -126,7 +127,7 @@ var app = app || {};
     });
   };
 
-  User.addToFavorites = (ctx, next) => {
+  User.addToFavorites = (ctx) => {
     // find index of movie with id = ctx.params.id
     let favMovie = app.Movie.all.filter(m => m.id === parseInt(ctx.params.id));
     console.log(favMovie);

@@ -45,13 +45,13 @@ page('/editPreferences', ()=> {
   app.userView.editPreferences();
 });
 
-page('/addToFavs/:id',(ctx) => {
-  console.log('adding id',ctx.params.id,'to favorites');
+page('/addToFavs/:id', (ctx) => {
+  console.log('adding id', ctx.params.id,'to favorites');
   app.User.addToFavorites(ctx);
 });
 
-page('/removeFromFavs/:id',(ctx) => {
-  console.log('removing id',ctx.params.id,'from favorites');
+page('/removeFromFavs/:id', (ctx) => {
+  console.log('removing id', ctx.params.id,'from favorites');
   app.User.removeFromFavorites(ctx);
 });
 
@@ -63,7 +63,7 @@ page('/favorites', () => {
 page('/search', (ctx) => app.movieView.handleGeneralSearch(ctx));
 
 page('/search/:page', (ctx) => {
-  $(document).scrollTop( $('#header').offset().top );
+  $(document).scrollTop($('#header').offset().top);
   app.movieView.handleGeneralSearch(ctx);
 });
 
