@@ -17,7 +17,8 @@ var app = app || {};
   };
 
   movieView.initFavStar = function() {
-    if (app.User.current) {  // then we have a logged in user
+    if (app.User.current) { // then we have a logged in user
+      $('.fav-menu').show(); // show the favorites menu item
       $('.not-fav').show(); // show all the empty (not fav) stars
       // map user's favorite movie id's to a new array
       let userMovieIds = app.User.current.preferences.favorites.map(m => parseInt(m.id));
@@ -28,25 +29,44 @@ var app = app || {};
           $(`#fav-${m.id}`).show();
         }
       });
-    
+
       //   if app.Movie.all contains the favorite's move ID
       //      make full star visible
       //   otherwise make empty star visible
     }
-  }
+  };
+
+  movieView.initFavoritesPage = () => {
+    console.log('initFavoritesPage');
+    // point Movie.all to current user's favorites list
+    app.Movie.all = [];
+    let favs = app.User.current.preferences.favorites;
+    favs.forEach(fav => app.Movie.all.push(new app.Movie(fav)));
+    let $movieList = $('#movie-list');
+    $movieList.empty();
+    app.Movie.all.forEach(elem => {$movieList.append(elem.toHtml());});
+    app.movieView.initFavStar();
+  };
+
   movieView.addPageNavFooter = function(){
     if (app.Movie.page){
+      let randomSearch = $('#search').val() === '';
+      console.log(randomSearch);
       let pageView = `<p class="page-nav-footer">`;
       pageView += ` Page ${app.Movie.page} of ${app.Movie.totalPages} `;
-      if (app.Movie.page > 1) {
-        pageView += `<a href= "/search/${app.Movie.page - 1}">Prev ⬅️</a>`;
+      if (randomSearch) {
+        pageView += `<a href="/">Next random page</a>`;
       } else {
-        pageView += `Prev ⬅️`;
-      }
-      if (app.Movie.page < app.Movie.totalPages) {
-        pageView += ` <a href= "/search/${app.Movie.page + 1}">➡️ Next</a>`;
-      } else {
-        pageView += ` ➡️ Next`;
+        if (app.Movie.page > 1) {
+          pageView += `<a href="/search/{app.Movie.page - 1}">Prev <span class="icon-arrow-left"</span></a>`;
+        } else {
+          pageView += `Prev <span class="icon-arrow-left"></span>`;
+        }
+        if (app.Movie.page < app.Movie.totalPages) {
+          pageView += ` <a href="/search/${app.Movie.page + 1}"><span class="icon-arrow-right"></span> Next</a>`;
+        } else {
+          pageView += ` <span class="icon-arrow-right"></span> Next`;
+        }
       }
       pageView += `<p>`;
 
@@ -95,7 +115,7 @@ var app = app || {};
         console.log('Page',response.page,'of',response.total_pages);
         movieView.initTinyPeoplePage();
       })
-      .catch(err => console.log('that didn\'t work'));
+      .catch(err => console.log(err));
   };
 
   movieView.getPersonDetail = function(ctx){
@@ -111,7 +131,7 @@ var app = app || {};
         console.log('Page',response.page,'of',response.total_pages);
         movieView.initIndexPage();
       })
-      .catch(err => console.log('that didn\'t work'));
+      .catch(err => console.log(err));
   };
 
   movieView.searchMovies = function (ctx, search){

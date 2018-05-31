@@ -18,8 +18,8 @@ var app = app || {};
     this.preferences = JSON.stringify({
       maxrating: 4,
       minratings: 25,
-      //maxdate: new Date().toString().slice(d.indexOf(' ')+1, 15),
-      mindate: 'Jan 01 1970',
+      maxdate: app.getNow(),
+      mindate: '1970-01-01',
       sortby: 'rating',
       favorites: []
     });
@@ -31,7 +31,7 @@ var app = app || {};
   };
 
   //Function that updates the database
-  User.prototype.updateUser = function() {
+  User.prototype.updateUser = function(callback) {
     $.ajax({
       url: `${app.ENVIRONMENT.apiUrl}/users/update`,
       method: 'PUT',
@@ -41,7 +41,10 @@ var app = app || {};
         password: this.password,
         preferences: JSON.stringify(this.preferences),
       }
-    }).then(() => console.log('Updated database for',this.username))
+    }).then(() => {
+      console.log('Updated database for',this.username);
+      if (callback) callback();
+    })
       .catch(console.error);
   };
 
@@ -57,18 +60,26 @@ var app = app || {};
         preferences: this.preferences
       }
     }).then(() => {
-      alert('User created');
-      app.toggleMenu();
-      page('/');
+      app.userView.userLogin();
+      $('#username').val(this.username);
+      $('#password').val(this.password);
+      $('#login-form').submit();
     }).catch(console.error);
   };
 
   //Function that removes a user from the database
   User.prototype.removeUser = function() {
     $.ajax({
-      url: `${app.ENVIRONMENT.apiUrl}/users/remove/${this.id}`,
+      url: `${app.ENVIRONMENT.apiUrl}/users/remove/${this.username}`,
       method: 'DELETE'
-    }).catch(console.error);
+    })
+      .then(() => {
+        console.log(this.username,'deleted');
+        app.User.current = null;
+        app.userView.toggleUserView();
+        page('/');
+      })
+      .catch(console.error);
   };
 
   User.prototype.toHtml = function() {
@@ -97,7 +108,6 @@ var app = app || {};
         User.current.updateUser();
       }
       // Make sure that the filters are populated with the user preferences.
-      app.toggleMenu();
       page('/');
       app.userView.toggleUserView();
     } else alert('Incorrect password');
@@ -120,7 +130,7 @@ var app = app || {};
     });
   };
 
-  User.addToFavorites = (ctx, next) => {
+  User.addToFavorites = (ctx) => {
     // find index of movie with id = ctx.params.id
     let favMovie = app.Movie.all.filter(m => m.id === parseInt(ctx.params.id));
     console.log(favMovie);
@@ -128,8 +138,8 @@ var app = app || {};
     console.log('after push favs', User.current.preferences.favorites);
     $(`#not-fav-${ctx.params.id}`).hide();
     $(`#fav-${ctx.params.id}`).show();
-    User.current.updateUser(); 
-  }
+    User.current.updateUser();
+  };
 
   User.removeFromFavorites = (ctx) => {
     let notFavMovieIds = User.current.preferences.favorites.map(m => parseInt(m.id));
@@ -138,7 +148,7 @@ var app = app || {};
     $(`#fav-${ctx.params.id}`).hide();
     $(`#not-fav-${ctx.params.id}`).show();
     User.current.updateUser();
-  }
+  };
 
   module.User = User;
 })(app);

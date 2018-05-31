@@ -1,5 +1,6 @@
 h1 {
   font-size: 1.6em;
+  color: #FFF;
 }
 
 h2 {
@@ -7,11 +8,18 @@ h2 {
 }
 
 .icon-menu {
-  float: left;
+  position: absolute;
+  top: 0;
+  right: 0;
   font-size: 2.5em;
   line-height: .7em;
-  margin-top: 0em;
+  margin-top: .5em;
+  margin-right: .5em;
   padding: 0;
+}
+
+.heading-group-h1 {
+  position: relative;
 }
 
 .heading-group-h1 div {
@@ -21,7 +29,6 @@ h2 {
 .heading-group-h1 input {
   font-size: 1.3em;
   width: 65%;
-  margin-left: 1em;
   margin-right: 0em;
   padding: 0;
 }
@@ -38,15 +45,15 @@ h2 {
 img {
   display: block;
   margin: auto;
+  max-width: 20vw;
 }
 
 footer{
   text-align: center;
 }
 
-.movie-list-item, .movie-tiny-person-list, .login-form, .page-nav-footer, #user-preferences {
+.movie-list-item, .movie-tiny-person-list, .login-form, .page-nav-footer, #user-preferences, .edit-preferences {
   margin-top: 1em;
-  margin-left: 2em;
   background-color: #eeeeee;
   padding: 0.5em;
   box-shadow: 8px 8px 6px -6px black;
@@ -69,7 +76,6 @@ footer{
 .movie-info, .movie-tiny-person-list {
   margin-top: 1em;
   text-align: center;
-  box-shadow: 0 8px 6px -6px black;
 }
 
 .movie-tiny-person-list img {
@@ -81,27 +87,34 @@ h3 {
   font-size: 1.5em;
 }
 
-.login-form div {
+
+.login-form div, .edit-preferences div {
   border-bottom: 1px solid #efefef;
   margin: 10px;
   padding-bottom: 20px;
   width: 440px;
   font-size: 1.1em;
 }
-.login-title {
+.edit-preferences div {
+  width: 640px;
+}
+.login-title, .edit-prefs-title {
   float: left;
   width: 100px;
   text-align: right;
   padding-right: 10px;
 }
-.login-button {
+.edit-prefs-title {
+  width: 300px;
+}
+.login-button, .create-account-button, .save-edits-button {
   float: right;
   margin-right: 265px;
   text-align: left;
 }
-
 .create-account-button {
-  float: right;
   margin-right: 190px;
-  text-align: left;
+}
+.save-edits-button {
+  margin-right: 170px;
 }

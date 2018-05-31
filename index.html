@@ -17,10 +17,10 @@
         <img class="movie-img" src="{{poster_path}}">
         <span class="movie-info">
           <h3>{{title}}</h3>
-          <a href="/addToFavs/{{id}}" id="not-fav-{{id}}" class="icon-star-empty fav-star not-fav"></a>
-          <a href="/removeFromFavs/{{id}}" id="fav-{{id}}" class="icon-star-full fav-star is-fav"></a>
+          <a href="/addToFavs/{{id}}" id="not-fav-{{id}}" class="icon-star-empty fav-star not-fav" title="Add to favorites"></a>
+          <a href="/removeFromFavs/{{id}}" id="fav-{{id}}" class="icon-star-full fav-star is-fav" title="Remove from favorites"></a>
           <p><strong>Average Rating:</strong> {{vote_average}}/10</p>
-          <p><strong>Released Date:</strong> {{release_date}}</p>
+          <p><strong>Release Date:</strong> {{release_date}}</p>
           <p class="overview">{{overview}}</p>
           <p><a href="/credits/{{id}}">Cast and Credits</a></p>
         </span>
@@ -53,9 +53,9 @@
         <ul>
           <li>Maximum overall rating: {{maxrating}}</li>
           <li>Minimum number of votes: {{minratings}}</li>
-          <li>Movies are sorted by: {{sortby}}</li>
           <li>Showing movies released after: {{mindate}}</li>
         </ul>
+        <a href="/editPreferences" class="icon-pencil2"> Edit preferences</a>
       </div>
     </script>
 
@@ -76,9 +76,9 @@
         <a href="/"><h1>Bad Movie Tonight</h1></a>
         <h2>A site dedicated to the worst of cinema</h2>
         <div class="clearfix">
-          <a href="/menu" class="icon-menu"></a>
+          
           <form id="search-form">
-            <input type="search" id="search" placeholder="Search"></input>
+            <input type="search" id="search" placeholder="Discover bad movies!"></input>
             <select id="search-type">
               <option value="movie" selected>Movie</option>
               <option value="person">Actor</option>
@@ -87,7 +87,8 @@
             <button type="submit" class="icon-search"></button></a>
           </form>
         </div>
-      <nav>        
+        <a href="/menu" class="icon-menu"></a>   
+      <nav> 
         <ul>
           <li class="tab" data-content="movies"><a href="/" class="icon-home"> Home</a></li>
           <li class="tab" data-content="login-logout">
@@ -96,8 +97,9 @@
           </li>
           <li class="tab" data-content="signup-profile">
             <a href="/signup" class="icon-pencil2"> New User</a>
-            <a href="/profile" class="icon-user-tie"> My Profile</a>
+            <a href="/profile" class="icon-user-tie"> Settings</a>
           </li>
+          <li class="tab fav-menu" data-content="favorites"><a href="/favorites" class="icon-star-full"> Favs</a></li>
           <li class="tab" data-content="about"><a href="/about" class="icon-address-book"> About</a></li>
         </ul>
       </nav>
@@ -108,23 +110,6 @@
 
       <section id="about-us" class="container">
         <h1>About the Developers</h1>
-      </section>
-
-      <section id="movie-advanced-search" class="container">
-        <h2>Find Movies</h2>
-        <form id="advanced-search-form">
-          <input type="number" id="max-rating" placeholder="Max Rating">
-          <input type="number" id="min-ratings" placeholder="Min Ratings">
-          <input type="date" id="date-before" placeholder="Date Before">
-          <input type="date" id="date-after" placeholder="Date After">
-          <select name="Sort By" id="sort-by">
-            <option value="date-asc">Oldest</option>
-            <option value="date-desc">Newest</option>
-            <option value="name">Name</option>
-            <option value="rating">Lowest Rated</option>
-            <option value="popularity">Most Popular</option>
-          </select>
-        </form>
       </section>
 
       <section id="login" class="container">
@@ -143,14 +128,6 @@
         </form>
       </section>
 
-      <!-- <section id="new-user" class="container">
-          <form id="new-user-form">
-            <div></div>
-            <input type="text" id="new-username" placeholder="Username">
-            <input type="password" id="new-password" placeholder="Password">
-            <button type="submit">Create Account</button>
-          </form>
-        </section> -->
           <section id="new-user" class="container">
             <form id="new-user-form" class="login-form">
               <div>
@@ -166,12 +143,32 @@
               </div>
             </form>
           </section>
-      
+
+          <section id="edit-user-preferences" class="container">
+              <form id="edit-preferences-form" class="edit-preferences">
+                <div>
+                  <label for="max-rating" class="edit-prefs-title">Maximum movie rating: </label>
+                  <input type="number" id="max-rating">
+                </div>
+                <div>
+                  <label for="min-ratings" class="edit-prefs-title">Minimum number of rating votes: </label>
+                  <input type="number" id="min-ratings">
+                </div>
+                <div>
+                  <label for="date-after" class="edit-prefs-title">Find movies newer than: </label>
+                  <input type="date" id="date-after">
+                </div>
+                <div id="save-edits-button">
+                  <button type="submit" class="save-edits-button">Save Preferences</button>
+                </div>
+              </form>
+            </section>
+            
       <section id="user-profile" class="container"></section>
 
     </main>
     <footer>
-
+      <p>Powered by <a href="https://www.themoviedb.org/" target="_blank">TheMovieDb.org</a></p>
     </footer>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/4.0.11/handlebars.min.js"></script>

@@ -36,14 +36,19 @@ var app = app || {};
   };
 
   Movie.fetchAll = (callback) => {
-    $.get(`${app.ENVIRONMENT.apiUrl}/homepage`)
+    let randPage = 1;
+    $.get(`${app.ENVIRONMENT.apiUrl}/homepage/${randPage}`)
       .then(response => {
-        Movie.loadAll(response.results);
-        // app.Movie.page = response.page;
-        // app.Movie.totalPages = response.total_pages;
-        callback();
-      })
-      .catch(err => console.log(err));
+        Movie.totalPages = response.total_pages;
+        randPage = Math.floor(Math.random() * Movie.totalPages) + 1;
+        $.get(`${app.ENVIRONMENT.apiUrl}/homepage/${randPage}`)
+          .then(response => {
+            Movie.page = response.page;
+            Movie.loadAll(response.results);
+            callback();
+          })
+          .catch(err => console.log(err));
+      });
   };
 
   module.Movie = Movie;

@@ -24,7 +24,9 @@ nav {
 }
 
 ul {
-  display: block;
+  float: left;
+  clear: both;
+  width: 100%;
   list-style-type: none;
   margin-left: 0em;
   padding-left: 0em;
@@ -75,6 +77,7 @@ main p{
 }
 
 .heading-group-h1 h1{
+  color: white;
   font-family: 'Fontdiner Swanky', cursive;
 }
 
@@ -113,12 +116,25 @@ a[href="/logout"], a[href="/profile"] {
   color: red;
 }
 
-@media only screen and (min-width:680px){
+.fav-menu {
+  display: none;
+}
+
+li:hover a {
+  color: #FFF;
+}
+
+@media only screen and (min-width:720px){
+
+  nav ul {
+    width: auto;
+    clear: none;
+    margin: 0;
+  }
+
   nav li{
     float: left;
     border-bottom: none;
-    padding-top: .5em;
-    padding-bottom: .5em;
-    padding-left: 1em;
+    padding: .7em 0 0 1em;
   }
 }

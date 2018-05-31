@@ -29,9 +29,18 @@ var app = app || {};
     $('nav ul').toggle();
   };
 
+  module.hideMenu = () => $('nav ul').hide();
+
+  module.showMenu = () => $('nav ul').show();
+
   module.render = (templateId, data) => {
     let template = Handlebars.compile($(`#${templateId}`).text());
     return template(data);
   };
 
+  module.getNow = () => {
+    let d = new Date();
+    return `${d.getFullYear()}-${d.getMonth()}-${d.getDay()}`;
+  };
+  
 })(app);

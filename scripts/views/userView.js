@@ -14,6 +14,11 @@ var app = app || {};
     $('a[href="/profile"]').toggle();
   };
 
+  // Function that scrolls user to top of page (mainly used during page navigation).
+  userView.scrollToTop = function() {
+    $(document).scrollTop($('#header').offset().top);
+  };
+
   userView.userLogin = function() {
     $('#login-form').on('submit', function(e) {
       e.preventDefault();
@@ -30,6 +35,24 @@ var app = app || {};
     let $userProfile = $('#user-profile');
     $userProfile.empty();
     $userProfile.append(app.User.current.toHtml());
+  };
+
+  userView.editPreferences = function() {
+    console.log('/editPreferences');
+    app.showOnly('#edit-user-preferences');
+    let uPrefs = app.User.current.preferences;
+    $('#max-rating').val(uPrefs.maxrating);
+    $('#min-ratings').val(uPrefs.minratings);
+    $('#date-after').val(uPrefs.mindate);
+    $('#edit-preferences-form').on('submit', (e) => {
+      e.preventDefault();
+      console.log('form submitted');
+      $('#edit-preferences-form').off('submit');
+      uPrefs.maxrating = $('#max-rating').val();
+      uPrefs.minratings = $('#min-ratings').val();
+      uPrefs.mindate = $('#date-after').val();
+      app.User.current.updateUser(() => page('/'));
+    });
   };
 
   module.userView = userView;
