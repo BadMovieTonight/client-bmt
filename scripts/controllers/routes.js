@@ -5,7 +5,9 @@ page('/', () => {
   delete app.Movie.totalPages;
   app.hideMenu();
   app.showOnly('#movie-list');
+  $('#search').val('');
   app.Movie.fetchAll(app.movieView.initIndexPage);
+  $(document).scrollTop( $("#header").offset().top );
 });
 
 page('/client-bmt', () => page('/'));
