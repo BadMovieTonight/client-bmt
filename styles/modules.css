@@ -47,7 +47,7 @@ nav li {
 
 nav li a, .heading-group-h1 a {
   text-decoration: none;
-  color: grey;
+  color: rgb(186, 186, 186);
   font-family: 'Times New Roman', Times, serif;
 }
 
@@ -130,6 +130,16 @@ a[href="/logout"], a[href="/profile"] {
 
 li:hover a {
   color: #FFF;
+}
+
+#doesnt-suck h1, #doesnt-suck h3 {
+  color: black;
+  text-align: center;
+}
+
+#search-type {
+  background: white;
+  color: black;
 }
 
 @media only screen and (min-width:720px){

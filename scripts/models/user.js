@@ -37,7 +37,6 @@ var app = app || {};
         preferences: JSON.stringify(this.preferences),
       }
     }).then(() => {
-      console.log('Updated database for',this.username);
       if (callback) callback();
     })
       .catch(console.error);
@@ -105,7 +104,7 @@ var app = app || {};
       // Make sure that the filters are populated with the user preferences.
       page('/');
       app.userView.toggleUserView();
-    } else alert('Incorrect password');
+    } else alert('Unrecognized username or password.');
   };
 
   User.newUser = function() {
@@ -119,7 +118,7 @@ var app = app || {};
 
       //Logic that checks if there is a user in the database with the same username.
       app.User.getUser(userObject,
-        function(){alert('User already exists');},
+        function(){alert('That username is already taken.');},
         function(){new app.User(userObject).addUser();}
       );
     });
@@ -128,9 +127,7 @@ var app = app || {};
   User.addToFavorites = (ctx) => {
     // find index of movie with id = ctx.params.id
     let favMovie = app.Movie.all.filter(m => m.id === parseInt(ctx.params.id));
-    console.log(favMovie);
     User.current.preferences.favorites.push(favMovie[0]);
-    console.log('after push favs', User.current.preferences.favorites);
     $(`#not-fav-${ctx.params.id}`).hide();
     $(`#fav-${ctx.params.id}`).show();
     User.current.updateUser();
