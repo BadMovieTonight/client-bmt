@@ -18,8 +18,8 @@ var app = app || {};
     this.preferences = JSON.stringify({
       maxrating: 4,
       minratings: 25,
-      //maxdate: new Date().toString().slice(d.indexOf(' ')+1, 15),
-      mindate: 'Jan 01 1970',
+      maxdate: app.getNow(),
+      mindate: '1970-01-01',
       sortby: 'rating',
       favorites: []
     });
@@ -66,9 +66,14 @@ var app = app || {};
   //Function that removes a user from the database
   User.prototype.removeUser = function() {
     $.ajax({
-      url: `${app.ENVIRONMENT.apiUrl}/users/remove/${this.id}`,
+      url: `${app.ENVIRONMENT.apiUrl}/users/remove/${this.username}`,
       method: 'DELETE'
-    }).catch(console.error);
+    })
+    .then(() => {
+      console.log(this.username,'deleted');
+      app.User.current = null;
+      page('/')})
+    .catch(console.error);
   };
 
   User.prototype.toHtml = function() {

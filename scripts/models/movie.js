@@ -36,7 +36,8 @@ var app = app || {};
   };
 
   Movie.fetchAll = (callback) => {
-    $.get(`${app.ENVIRONMENT.apiUrl}/homepage`)
+    let randPage = Math.floor(Math.random() * 50) + 1;
+    $.get(`${app.ENVIRONMENT.apiUrl}/homepage/${randPage}`)
       .then(response => {
         Movie.loadAll(response.results);
         // app.Movie.page = response.page;
