@@ -89,7 +89,7 @@ h3 {
 
 
 .login-form div, .edit-preferences div {
-  border-bottom: 1px solid #efefef;
+  /* border-bottom: 1px solid #efefef; */
   margin: 10px;
   padding-bottom: 20px;
   width: 440px;
@@ -97,6 +97,7 @@ h3 {
 }
 .edit-preferences div {
   width: 640px;
+  /* border-bottom: none; */
 }
 .login-title, .edit-prefs-title {
   float: left;
