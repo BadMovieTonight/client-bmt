@@ -13,17 +13,21 @@
     <link rel="icon" type="image/x-icon" href="https://avatars2.githubusercontent.com/u/18607604?v=3&s=200">
 
     <script id="movie-list-template" type="text/x-handlebars-template">
-      <div class="movie-list-item" id="{{id}}">
-        <img class="movie-img" src="{{poster_path}}">
-        <span class="movie-info">
-          <h3>{{title}}</h3>
-          <a href="/addToFavs/{{id}}" id="not-fav-{{id}}" class="icon-star-empty fav-star not-fav" title="Add to favorites"></a>
-          <a href="/removeFromFavs/{{id}}" id="fav-{{id}}" class="icon-star-full fav-star is-fav" title="Remove from favorites"></a>
-          <p><strong>Average Rating:</strong> {{vote_average}}/10</p>
-          <p><strong>Release Date:</strong> {{release_date}}</p>
-          <p class="overview">{{overview}}</p>
-          <p><a href="/credits/{{id}}">Cast and Credits</a></p>
-        </span>
+      <div class="movie-list-item row" id="{{id}}">
+        <div class="movie-list-column-1">
+          <img class="movie-img" src="{{poster_path}}">
+        </div>
+        <div class="movie-list-column-2">
+          <div class="movie-info">
+            <h3>{{title}}</h3>
+            <a href="/addToFavs/{{id}}" id="not-fav-{{id}}" class="icon-star-empty fav-star not-fav" title="Add to favorites"></a>
+            <a href="/removeFromFavs/{{id}}" id="fav-{{id}}" class="icon-star-full fav-star is-fav" title="Remove from favorites"></a>
+            <p><strong>Average Rating:</strong> {{vote_average}}/10</p>
+            <p><strong>Release Date:</strong> {{release_date}}</p>
+            <p class="overview">{{overview}}</p>
+            <p id="trailer-{{id}}"></p>
+            <p><a href="/credits/{{id}}">Cast and Credits</a></p>
+          </div>
       </div>
     </script>
 

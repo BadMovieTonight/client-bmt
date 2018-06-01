@@ -36,11 +36,11 @@ var app = app || {};
     }
     if (trailerObj.site.toUpperCase() === 'YouTube'.toUpperCase()) {
       //https://www.youtube.com/watch?v=I9bHN15RO-4
-      trailerAnchor = `<p><a href="https://www.youtube.com/watch?v=${trailerObj.key}" target="_blank">Trailer on Youtube</a></p>`;
+      trailerAnchor = `<p><a href="https://www.youtube.com/watch?v=${trailerObj.key}" target="_blank" class="icon-youtube"><span> Trailer</span></a></p>`;
     }
     if (trailerAnchor) {
       console.log('addTrailer: ',trailerAnchor);
-      $(`div#${movieId}`).children().children().eq(5).after(trailerAnchor);
+      $(`p#trailer-${movieId}`).html(trailerAnchor);
     }
   };
 
