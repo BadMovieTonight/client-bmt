@@ -103,6 +103,10 @@ page('/bmt/person/:id', (ctx) => {
   app.movieView.getPersonDetail(ctx);
 });
 
+page('/showTrailer', () => {
+  $('.videoWrapper').toggle();
+});
+
 page('/about', () => {
   app.hideMenu();
   app.userView.scrollToTop();
