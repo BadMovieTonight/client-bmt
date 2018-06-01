@@ -103,8 +103,9 @@ page('/bmt/person/:id', (ctx) => {
   app.movieView.getPersonDetail(ctx);
 });
 
-page('/showTrailer', () => {
-  $('.videoWrapper').toggle();
+page('/showTrailer/:movieId', (ctx) => {
+  app.hideMenu();
+  $(`.videoWrapper[id="video-${ctx.params.movieId}"]`).toggle();
 });
 
 page('/about', () => {

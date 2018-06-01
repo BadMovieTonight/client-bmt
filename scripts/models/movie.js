@@ -30,8 +30,8 @@ var app = app || {};
     let trailerAnchor = null;
     if (!trailerObj) {return;}
     if (trailerObj.site.toUpperCase() === 'YouTube'.toUpperCase()) {
-      trailerAnchor=`<p><a href="/showTrailer" class="icon-youtube"><span> Trailer</span></a></p>
-      <div class="videoWrapper"><iframe src="https://www.youtube.com/embed/${trailerObj.key}" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe></div>`
+      trailerAnchor=`<p><a href="/showTrailer/${movieId}" class="icon-youtube"><span> Trailer</span></a></p>
+      <div class="videoWrapper" id="video-${movieId}"><iframe src="https://www.youtube.com/embed/${trailerObj.key}" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe></div>`
     }
     if (trailerAnchor) {
       $(`p#trailer-${movieId}`).html(trailerAnchor);

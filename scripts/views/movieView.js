@@ -50,7 +50,10 @@ var app = app || {};
     favs.forEach(fav => app.Movie.all.push(new app.Movie(fav)));
     let $movieList = $('#movie-list');
     $movieList.empty();
-    app.Movie.all.forEach(elem => {$movieList.append(elem.toHtml());});
+    app.Movie.all.forEach(elem => {
+      $movieList.append(elem.toHtml());
+      elem.getTrailer();
+    });
     app.movieView.initFavStar();
   };
 
@@ -140,9 +143,6 @@ var app = app || {};
           .map(o => new app.Movie(o));
         app.Movie.page = response.page;
         app.Movie.totalPages = response.total_pages;
-      })
-      .then(() => {
-        //get trailer url for everything in app.Movie.all
       })
       .then(() => {
         movieView.initIndexPage();
