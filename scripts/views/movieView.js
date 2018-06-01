@@ -137,9 +137,27 @@ var app = app || {};
           .map(o => new app.Movie(o));
         app.Movie.page = response.page;
         app.Movie.totalPages = response.total_pages;
+      })
+      .then(() => {
+        //get trailer url for everything in app.Movie.all
+      })
+      .then(() => {
         movieView.initIndexPage();
       })
       .catch(err => console.log(err));
+  };
+
+  movieView.getTrailers = function(movieId) {
+    $.get(`${app.ENVIRONMENT.apiUrl}/movie/${movieId}/videos`)
+      .then(response => {
+        console.log(response);
+        movieView.addTrailerUrlToMovie(movieId);
+      })
+      .catch(console.error);
+  };
+
+  movieView.addTrailerUrlToMovie = (movieId) => {
+
   };
 
   movieView.viewBadFilmography = function(actor) {
