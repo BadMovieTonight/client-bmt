@@ -147,6 +147,17 @@ li:hover a {
   background: white;
   color: black;
 }
+.icon-youtube:before {
+  font-size: 1.1em;
+}
+a.icon-youtube span  {
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: 1.1em;
+  text-decoration: none;
+}
+a {
+  font-size: 1.1em;
+}
 
 @media only screen and (min-width:720px){
 
@@ -162,9 +173,3 @@ li:hover a {
     padding: .7em 0 0 1em;
   }
 }
-
-/* @media only screen and (min-width:960px){
-  .developer-details div {
-    width: 70%;
-  }
-} */
