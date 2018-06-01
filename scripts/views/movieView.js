@@ -10,9 +10,12 @@ var app = app || {};
     let $movieList = $('#movie-list');
     $movieList.empty();
     app.Movie.getImages();
-    if (app.Movie.all.length !== 0) {  // movie or actor sucks
+    if (app.Movie.all.length !== 0) { // movie or actor sucks
       app.showOnly('#movie-list');
-      app.Movie.all.forEach(elem => {$movieList.append(elem.toHtml());});
+      app.Movie.all.forEach(elem => {
+        $movieList.append(elem.toHtml());
+        elem.getTrailer();
+      });
       app.movieView.initFavStar();
       movieView.addPageNavFooter();
     } else { // they don't suck so much
@@ -47,7 +50,10 @@ var app = app || {};
     favs.forEach(fav => app.Movie.all.push(new app.Movie(fav)));
     let $movieList = $('#movie-list');
     $movieList.empty();
-    app.Movie.all.forEach(elem => {$movieList.append(elem.toHtml());});
+    app.Movie.all.forEach(elem => {
+      $movieList.append(elem.toHtml());
+      elem.getTrailer();
+    });
     app.movieView.initFavStar();
   };
 
@@ -137,6 +143,8 @@ var app = app || {};
           .map(o => new app.Movie(o));
         app.Movie.page = response.page;
         app.Movie.totalPages = response.total_pages;
+      })
+      .then(() => {
         movieView.initIndexPage();
       })
       .catch(err => console.log(err));

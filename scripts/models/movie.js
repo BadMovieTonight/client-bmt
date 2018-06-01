@@ -18,6 +18,26 @@ var app = app || {};
     }
   };
 
+  Movie.prototype.getTrailer = function() {
+    $.get(`${app.ENVIRONMENT.apiUrl}/movie/${this.id}/videos`)
+      .then(response => {
+        addTrailerUrlToMovie(response[0],this.id);
+      })
+      .catch(console.error);
+  };
+
+  let addTrailerUrlToMovie = (trailerObj, movieId) => {
+    let trailerAnchor = null;
+    if (!trailerObj) {return;}
+    if (trailerObj.site.toUpperCase() === 'YouTube'.toUpperCase()) {
+      trailerAnchor=`<p><a href="/showTrailer/${movieId}" class="icon-youtube"><span> Trailer</span></a></p>
+      <div class="videoWrapper" id="video-${movieId}"><iframe src="https://www.youtube.com/embed/${trailerObj.key}" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe></div>`
+    }
+    if (trailerAnchor) {
+      $(`p#trailer-${movieId}`).html(trailerAnchor);
+    }
+  };
+
   Movie.loadAll = movieData => {
     Movie.all = movieData.map(movieObj => new Movie(movieObj));
   };

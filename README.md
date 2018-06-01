@@ -21,17 +21,25 @@ Written with Visual Studio Code.
 Uses PostreSQL database system.  
 Package management by NPM.
 
-## Change Log
-
-05-DD-2018 HH:MMxm - did a thing  
-
 ## Credits and Collaborations
-**The Movie Database, [themoviedb.org](https://www.themoviedb.org/documentation/api)
-**Anish Athalye** - [anishathalye](https://github.com/anishathalye/?normalize) for the normalize.css v3.0.2 | MIT License | [normalize](git.io/normalize)  
+**The Movie Database** - [themoviedb.org](https://www.themoviedb.org/documentation/api)
+
+**YouTube embedded trailers** - [YouTube](https://www.youtube.com)
+
+**Anish Athalye** - [anishathalye](https://github.com/anishathalye/?normalize) for the normalize.css v3.0.2 | MIT License | [normalize](git.io/normalize) 
+
 **Icomoon** - [Icomoon](https://icomoon.io/)  
+
 **JQuery** - [JQuery](https://jquery.com/)  
+
 **Handlebars** - [Handlebars](http://handlebarsjs.com/)  
+
 **NPM** - [NPM](https://www.npmjs.com/)  
+
 **Express** - [Express](https://expressjs.com/)  
+
 **PostgreSQL** - [PostgreSQL](https://www.postgresql.org/)
+
 **Google Fonts** - [font-family: 'Fontdiner Swanky'](https://fonts.google.com/?query=fontdiner+swanky)
+
+**Responsive iFrame CSS** - [CSS-Tricks](https://css-tricks.com/NetMag/FluidWidthVideo/Article-FluidWidthVideo.php)
