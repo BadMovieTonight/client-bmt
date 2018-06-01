@@ -12,7 +12,10 @@ var app = app || {};
     app.Movie.getImages();
     if (app.Movie.all.length !== 0) {  // movie or actor sucks
       app.showOnly('#movie-list');
-      app.Movie.all.forEach(elem => {$movieList.append(elem.toHtml());});
+      app.Movie.all.forEach(elem => {
+        $movieList.append(elem.toHtml());
+        elem.getTrailer();
+      });
       app.movieView.initFavStar();
       movieView.addPageNavFooter();
     } else { // they don't suck so much
@@ -145,19 +148,6 @@ var app = app || {};
         movieView.initIndexPage();
       })
       .catch(err => console.log(err));
-  };
-
-  movieView.getTrailers = function(movieId) {
-    $.get(`${app.ENVIRONMENT.apiUrl}/movie/${movieId}/videos`)
-      .then(response => {
-        console.log(response);
-        movieView.addTrailerUrlToMovie(movieId);
-      })
-      .catch(console.error);
-  };
-
-  movieView.addTrailerUrlToMovie = (movieId) => {
-
   };
 
   movieView.viewBadFilmography = function(actor) {
