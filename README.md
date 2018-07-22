@@ -1,5 +1,5 @@
 # Bad Movie Tonight Client
-**Version**: 0.0.0
+**Version**: 1.0.0
 
 ## Authors
 **Benjamin Taylor** - [btaylor93](https://github.com/btaylor93)  
@@ -7,8 +7,8 @@
 **Jenny Lawrence** - [JPLaw](https://github.com/JPLaw)  
 **Tracy Williams** - [TCW417](https://github.com/TCW417)  
 
-## Getting Started
-**Step 1:** Go to [BadMovieTonight](https://badmovietonight.github.io/client-bmt)
+## View Site
+Go to [BadMovieTonight](https://badmovietonight.github.io/client-bmt)
 
 ## Architecture
 **Languages Used**: JavaScript, HTML, CSS, SQL  
